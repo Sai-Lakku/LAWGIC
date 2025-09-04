@@ -43,7 +43,7 @@ export default function Page() {
       const assistantMessage: Message = {
         id: messages.length + 2,
         type: "assistant",
-        content: `Thank you for your question about "${inputValue}". This is a simulated response. In a real implementation, this would connect to your backend.`,
+        content: `Thank you for your question about "${inputValue}". This is a testing version!`,
         confidence: Math.floor(Math.random() * 20) + 80,
         timestamp: new Date().toLocaleTimeString(),
       };

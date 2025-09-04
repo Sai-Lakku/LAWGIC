@@ -1,0 +1,167 @@
+{
+  "id": "578.03",
+  "url": "https://www.revisor.mn.gov/statutes/cite/578.03",
+  "title": "578.03 WARRANT; SHERIFF TO TAKE POSSESSION OF PROPERTY; FEES AND COSTS.",
+  "text": "The court may thereupon issue a warrant directed to the sheriff or a deputy, which may run throughout the state, commanding the officer to take possession of the property named in the schedule and hold it subject to the order of the court and make return of the warrant as soon as may be, with the officer's doings thereon and with a schedule of the property so taken. The officer shall post a copy of the warrant upon each parcel of land named in the schedule and cause so much of the warrant as relates to land to be recorded in the office of the county recorder for the county where the land is located. The officer shall receive such fees for serving the warrant as the court allows, but not more than those established by law for similar service upon a writ of attachment. If the petition is dismissed, the fees and the cost of publishing and serving the notice hereinafter provided shall be paid by the petitioner; if a receiver is appointed, they shall be paid by the receiver and allowed in the receiver's account.",
+  "repealed": false,
+  "rules": [
+    {
+      "rule": {
+        "if": [
+          {
+            "==": [
+              {
+                "var": "court_decision"
+              },
+              "issue_warrant"
+            ]
+          },
+          {
+            "and": [
+              {
+                "==": [
+                  {
+                    "var": "officer_action"
+                  },
+                  "take_possession"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "warrant_status"
+                  },
+                  "returned"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "warrant_posted"
+                  },
+                  "true"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "warrant_recorded"
+                  },
+                  "true"
+                ]
+              },
+              {
+                "<=": [
+                  {
+                    "var": "officer_fees"
+                  },
+                  {
+                    "var": "max_fees"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "if": [
+              {
+                "==": [
+                  {
+                    "var": "petition_status"
+                  },
+                  "dismissed"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "fees_paid_by"
+                  },
+                  "receiver"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "examples": [
+        {
+          "court_decision": "issue_warrant",
+          "officer_action": "take_possession",
+          "warrant_status": "returned",
+          "warrant_posted": "true",
+          "warrant_recorded": "true",
+          "officer_fees": 100,
+          "max_fees": 150,
+          "petition_status": "dismissed",
+          "fees_paid_by": "petitioner"
+        },
+        {
+          "court_decision": "issue_warrant",
+          "officer_action": "take_possession",
+          "warrant_status": "not_returned",
+          "warrant_posted": "false",
+          "warrant_recorded": "false",
+          "officer_fees": 200,
+          "max_fees": 150,
+          "petition_status": "dismissed",
+          "fees_paid_by": "petitioner"
+        },
+        {
+          "court_decision": "no_warrant",
+          "officer_action": "none",
+          "warrant_status": "none",
+          "warrant_posted": "false",
+          "warrant_recorded": "false",
+          "officer_fees": 0,
+          "max_fees": 150,
+          "petition_status": "dismissed",
+          "fees_paid_by": "petitioner"
+        }
+      ],
+      "variables": [
+        {
+          "name": "court_decision",
+          "description": "The decision made by the court regarding the issuance of a warrant."
+        },
+        {
+          "name": "officer_action",
+          "description": "The action taken by the officer in response to the warrant."
+        },
+        {
+          "name": "warrant_status",
+          "description": "The status of the warrant after being executed by the officer."
+        },
+        {
+          "name": "warrant_posted",
+          "description": "Indicates whether the warrant was posted on each parcel of land."
+        },
+        {
+          "name": "warrant_recorded",
+          "description": "Indicates whether the warrant was recorded in the county recorder's office."
+        },
+        {
+          "name": "officer_fees",
+          "description": "The fees received by the officer for serving the warrant."
+        },
+        {
+          "name": "max_fees",
+          "description": "The maximum allowable fees for serving the warrant."
+        },
+        {
+          "name": "petition_status",
+          "description": "The status of the petition, whether dismissed or not."
+        },
+        {
+          "name": "fees_paid_by",
+          "description": "The party responsible for paying the fees and costs."
+        }
+      ],
+      "consequences": [
+        "Warrant is executed and property is held subject to court order.",
+        "Officer fees are paid by petitioner if petition is dismissed.",
+        "Officer fees are paid by receiver if a receiver is appointed."
+      ]
+    }
+  ]
+}
