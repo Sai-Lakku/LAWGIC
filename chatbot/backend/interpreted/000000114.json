@@ -1,0 +1,85 @@
+{
+  "id": "1.51",
+  "url": "https://www.revisor.mn.gov/statutes/cite/1.51",
+  "title": "1.51 FLAGS FLOWN AT HALF-STAFF FOLLOWING PUBLIC SAFETY OFFICER DEATH.",
+  "text": "Each American flag and Minnesota flag flown on the grounds of the Capitol Area, as described in section 15B.02, must be flown at half-staff following the death of a public safety officer, as defined in section 299A.41, subdivision 4, killed in the line of duty in Minnesota, or the death of Minnesota military personnel killed in the line of duty. The flags must be flown at half-staff for a period of time determined by the governor.",
+  "repealed": false,
+  "rules": [
+    {
+      "rule": {
+        "and": [
+          {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "deceased_role"
+                  },
+                  "public safety officer"
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "deceased_role"
+                  },
+                  "military personnel"
+                ]
+              }
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "deceased_location"
+              },
+              "Minnesota"
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "flag_location"
+              },
+              "Capitol Area"
+            ]
+          }
+        ]
+      },
+      "examples": [
+        {
+          "deceased_role": "public safety officer",
+          "deceased_location": "Minnesota",
+          "flag_location": "Capitol Area"
+        },
+        {
+          "deceased_role": "military personnel",
+          "deceased_location": "Minnesota",
+          "flag_location": "Capitol Area"
+        },
+        {
+          "deceased_role": "public safety officer",
+          "deceased_location": "Minnesota",
+          "flag_location": "Other Area"
+        }
+      ],
+      "variables": [
+        {
+          "name": "deceased_role",
+          "description": "The role of the deceased individual, either 'public safety officer' or 'military personnel'."
+        },
+        {
+          "name": "deceased_location",
+          "description": "The location where the individual was killed in the line of duty."
+        },
+        {
+          "name": "flag_location",
+          "description": "The location where the flag is flown, specifically the 'Capitol Area'."
+        }
+      ],
+      "consequences": [
+        "Flags must be flown at half-staff for a period determined by the governor."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "id": "572B.19",
+  "url": "https://www.revisor.mn.gov/statutes/cite/572B.19",
+  "title": "572B.19 AWARD.",
+  "text": "(a) An arbitrator shall make a record of an award. The record must be authenticated by any arbitrator who concurs with the award. The arbitrator or the arbitration organization shall give notice of the award, including a copy of the award, to each party to the arbitration proceeding.\n(b) An award must be made within the time specified by the agreement to arbitrate or, if not specified therein, within the time ordered by the court. The court may extend or the parties to the arbitration proceeding may agree in a record to extend the time. The court or the parties may do so within or after the time specified or ordered. A party waives any objection that an award was not timely made unless the party gives notice of the objection to the arbitrator before receiving notice of the award.",
+  "repealed": false,
+  "rules": [
+    {
+      "rule": {
+        "and": [
+          {
+            "var": "award_recorded"
+          },
+          {
+            "var": "award_authenticated"
+          },
+          {
+            "var": "award_notified"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "award_recorded": true,
+          "award_authenticated": true,
+          "award_notified": true
+        },
+        {
+          "award_recorded": true,
+          "award_authenticated": false,
+          "award_notified": true
+        },
+        {
+          "award_recorded": false,
+          "award_authenticated": true,
+          "award_notified": true
+        }
+      ],
+      "variables": [
+        {
+          "name": "award_recorded",
+          "description": "Indicates if the arbitrator has made a record of the award."
+        },
+        {
+          "name": "award_authenticated",
+          "description": "Indicates if the award record is authenticated by any arbitrator who concurs with the award."
+        },
+        {
+          "name": "award_notified",
+          "description": "Indicates if notice of the award, including a copy, has been given to each party."
+        }
+      ],
+      "consequences": [
+        "The award process is complete and valid."
+      ]
+    },
+    {
+      "rule": {
+        "and": [
+          {
+            "or": [
+              {
+                "var": "time_specified"
+              },
+              {
+                "var": "time_ordered"
+              }
+            ]
+          },
+          {
+            "or": [
+              {
+                "var": "court_extended"
+              },
+              {
+                "var": "parties_agreed"
+              }
+            ]
+          },
+          {
+            "or": [
+              {
+                "var": "objection_waived"
+              },
+              {
+                "var": "objection_before_notice"
+              }
+            ]
+          }
+        ]
+      },
+      "examples": [
+        {
+          "time_specified": true,
+          "time_ordered": false,
+          "court_extended": false,
+          "parties_agreed": true,
+          "objection_waived": true,
+          "objection_before_notice": false
+        },
+        {
+          "time_specified": false,
+          "time_ordered": true,
+          "court_extended": true,
+          "parties_agreed": false,
+          "objection_waived": false,
+          "objection_before_notice": true
+        },
+        {
+          "time_specified": false,
+          "time_ordered": false,
+          "court_extended": false,
+          "parties_agreed": false,
+          "objection_waived": false,
+          "objection_before_notice": false
+        }
+      ],
+      "variables": [
+        {
+          "name": "time_specified",
+          "description": "Indicates if the award was made within the time specified by the agreement to arbitrate."
+        },
+        {
+          "name": "time_ordered",
+          "description": "Indicates if the award was made within the time ordered by the court."
+        },
+        {
+          "name": "court_extended",
+          "description": "Indicates if the court has extended the time for making the award."
+        },
+        {
+          "name": "parties_agreed",
+          "description": "Indicates if the parties have agreed in a record to extend the time for making the award."
+        },
+        {
+          "name": "objection_waived",
+          "description": "Indicates if a party has waived any objection to the timeliness of the award."
+        },
+        {
+          "name": "objection_before_notice",
+          "description": "Indicates if a party gave notice of objection to the arbitrator before receiving notice of the award."
+        }
+      ],
+      "consequences": [
+        "The award is considered timely and valid."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "1.1475",
+  "url": "https://www.revisor.mn.gov/statutes/cite/1.1475",
+  "title": "1.1475 STATE FRUIT.",
+  "text": "The Honeycrisp apple is the official fruit of the state of Minnesota.",
+  "repealed": false,
+  "rules": [
+    {
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "fruit"
+              },
+              "Honeycrisp apple"
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "state"
+              },
+              "Minnesota"
+            ]
+          }
+        ]
+      },
+      "examples": [
+        {
+          "fruit": "Honeycrisp apple",
+          "state": "Minnesota"
+        },
+        {
+          "fruit": "Granny Smith apple",
+          "state": "Minnesota"
+        },
+        {
+          "fruit": "Honeycrisp apple",
+          "state": "Wisconsin"
+        }
+      ],
+      "variables": [
+        {
+          "name": "fruit",
+          "description": "The type of fruit being referenced."
+        },
+        {
+          "name": "state",
+          "description": "The state being referenced."
+        }
+      ],
+      "consequences": [
+        "The Honeycrisp apple is the official fruit of the state of Minnesota."
+      ]
+    }
+  ]
+}
