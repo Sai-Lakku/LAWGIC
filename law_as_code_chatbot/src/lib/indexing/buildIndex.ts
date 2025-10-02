@@ -1,6 +1,6 @@
-import {memory} from "../vectorstore/memory.js";
-import {loadMongoAsDocs} from "../data/loaders/mongo.js";
-import {splitDocs} from "../data/splitter.js";
+import {memory} from "../vectorstore/memory";
+import {loadMongoAsDocs} from "../data/loaders/mongo";
+import {splitDocs} from "../data/splitter";
 let retrievePromise: Promise<ReturnType<typeof memory.asRetriever>> | null = null;
 
 export async function buildMemoryRetriever( k = 4 ) {

@@ -1,9 +1,13 @@
-import {InputStateAnnotation} from "../state.js";
-import {StateAnnotation} from "../state.js";
-// import {promptTemplate} from "../../prompts/chat.js";
-import { llm} from "../../llm/model.js";
-import { ragPrompt } from "../../prompts/rag.js";
+// generate.ts
+import {InputStateAnnotation} from "../state";
+import {StateAnnotation} from "../state";
+import { llm} from "../../llm/model";
+import { ragPrompt } from "../../prompts/rag";
 
+import {streamText} from "ai";
+import {openai} from "@ai-sdk/openai";
+
+// non-streaming version
 export async function generate(state: typeof StateAnnotation.State) {
   const docsContent = (state.context ?? []).map(d => d.pageContent).join("\n");
   const messages = await ragPrompt.invoke({
@@ -12,4 +16,28 @@ export async function generate(state: typeof StateAnnotation.State) {
   });
   const response = await llm.invoke(messages);
   return { answer: String(response.content ?? "") };
+}
+
+
+// streaming version
+export async function* generateStream(state: {
+  question: string;
+  context: Array<{ pageContent: string}>;
+}) {
+  const docsContent = (state.context ?? []).map(d => d.pageContent).join("\n");
+  const messages = await ragPrompt.invoke({
+    question: state.question,
+    context: docsContent,
+  });
+  const prompt = String(await ragPrompt.invoke({
+  question: state.question,
+  context: docsContent,
+}));
+  const {textStream} = streamText({
+    model: openai("gpt-4o"),
+    prompt
+});
+  for await (const textPart of textStream) {
+    yield textPart;
+  }
 }

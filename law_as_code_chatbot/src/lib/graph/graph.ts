@@ -1,7 +1,8 @@
+// graph.ts
 import {StateGraph} from "@langchain/langgraph";
-import {StateAnnotation} from "./state.js";
-import {retrieve} from "./nodes/retrieve.js";
-import {generate} from "./nodes/generate.js";
+import {StateAnnotation} from "./state";
+import {retrieve} from "./nodes/retrieve";
+import {generate} from "./nodes/generate";
 
 export const graph = new StateGraph(StateAnnotation)
   .addNode("retrieve", retrieve)

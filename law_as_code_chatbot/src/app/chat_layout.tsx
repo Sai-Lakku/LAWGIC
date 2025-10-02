@@ -1,3 +1,4 @@
+// chat_layout.tsx
 "use client";
 
 import { Search, Book, Scale, MessageSquare, Plus, ChevronDown, ChevronRight, Filter, Copy, ThumbsUp, ThumbsDown, Send, RefreshCw } from 'lucide-react';

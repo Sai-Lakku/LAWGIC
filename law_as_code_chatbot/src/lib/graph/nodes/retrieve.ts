@@ -1,5 +1,6 @@
-import {InputStateAnnotation} from "../state.js";
-import { buildMemoryRetriever } from "../../indexing/buildIndex.js";
+// retrieve.ts
+import {InputStateAnnotation} from "../state";
+import { buildMemoryRetriever } from "../../indexing/buildIndex";
 
 
 

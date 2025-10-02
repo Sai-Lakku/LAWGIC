@@ -1,4 +1,6 @@
 "use client";
+// page.tsx
+
 
 import { useState } from "react";
 import Layout from "./chat_layout";
@@ -34,39 +36,76 @@ export default function Page() {
       content: inputValue,
       timestamp: new Date().toLocaleTimeString(),
     };
+    setMessages(prev => [...prev, userMessage]);
 
-    setMessages((prev) => [...prev, userMessage]);
+    const question = inputValue;
     setInputValue("");
     setIsLoading(true);
 
-    setTimeout(() => {
-      const assistantMessage: Message = {
-        id: messages.length + 2,
-        type: "assistant",
-        content: `Thank you for your question about "${inputValue}". This is a testing version!`,
-        confidence: Math.floor(Math.random() * 20) + 80,
-        timestamp: new Date().toLocaleTimeString(),
-      };
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question }),
+      });
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      if (!res.body) {
+        throw new Error("No response body (stream).");
+      }
+
+      const assistantId = userMessage.id + 1;
+      setMessages(prev => [
+        ...prev,
+        {
+          id: assistantId,
+          type: "assistant",
+          content: "",
+          timestamp: new Date().toLocaleTimeString(),
+        },
+      ]);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let acc = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        acc += decoder.decode(value, { stream: true });
+
+        setMessages(prev =>
+          prev.map(m => (m.id === assistantId ? { ...m, content: acc } : m))
+        );
+        await new Promise(r => setTimeout(r, 100));
+      }
+    } catch (err) {
+      console.error("stream fetch error:", err);
+      setMessages(prev => [
+        ...prev,
+        {
+          id: messages.length + 2,
+          type: "assistant",
+          content: "⚠️ Streaming failed.",
+          timestamp: new Date().toLocaleTimeString(),
+        },
+      ]);
+    } finally {
       setIsLoading(false);
-    }, 1000);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
     }
   };
 
-  return (
+    return (
     <Layout
       messages={messages}
       inputValue={inputValue}
       setInputValue={setInputValue}
       onSendMessage={handleSendMessage}
-      onKeyPress={handleKeyPress}
+      onKeyPress={e => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          handleSendMessage();
+        }
+      }}
       isLoading={isLoading}
     />
   );
