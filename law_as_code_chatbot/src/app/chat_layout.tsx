@@ -2,7 +2,19 @@
 "use client";
 
 import { Search, Book, Scale, MessageSquare, Plus, ChevronDown, ChevronRight, Filter, Copy, ThumbsUp, ThumbsDown, Send, RefreshCw } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
+
+
+function MessageTimestamp({ timestamp }: { timestamp?: string }) {
+  const [clientTime, setClientTime] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Use the provided timestamp if it exists; otherwise generate once on mount
+    setClientTime(timestamp || new Date().toLocaleTimeString());
+  }, [timestamp]);
+
+  return <>{clientTime}</>;
+}
 
 interface Message {
   id: number;
@@ -236,7 +248,9 @@ export default function Layout({
                           )}
                         </div>
                         <div className="flex items-center gap-2 mt-2">
-                          <span className="text-xs text-gray-500">{msg.timestamp}</span>
+                          <span className="text-xs text-gray-500">
+                            <MessageTimestamp timestamp={msg.timestamp} />
+                          </span>
                           <div className="flex items-center gap-1">
                             <button className="p-1 text-gray-400 hover:text-gray-600 rounded">
                               <Copy className="w-3 h-3" />
@@ -291,7 +305,7 @@ export default function Layout({
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={onKeyPress}
                   placeholder="Ask a legal question... (e.g., 'What are the requirements for insider trading disclosure?')"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-3 pr-12 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black placeholder-gray-500"
                   rows={2}
                 />
                 <button

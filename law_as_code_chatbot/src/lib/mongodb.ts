@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 
+console.log("Mongo URI:", process.env.MONGODB_URI);
 
 // Load environment variables from .env.local
 
