@@ -1,10 +1,15 @@
 // law_as_code_chatbot/src/app/api/chat/route.ts
+export const runtime = "nodejs";
 import { retrieve } from "@/lib/graph/nodes/retrieve";
 import { generateStream } from "@/lib/graph/nodes/generate";
 import { langfuse } from "@/lib/langfuse";
 
 
-export const runtime = "nodejs";
+// console.log("🔥 Chat route reached");
+// console.log("process.release:", process.release);
+// console.log("env check:", process.env.LANGFUSE_HOST);
+
+
 
 export async function POST(req: Request) {
   const trace = langfuse.trace({ name: "chat-session" });
@@ -48,6 +53,8 @@ export async function POST(req: Request) {
       } finally {
         await writer.close();
         await trace.update({ output: "stream finished" });
+        await langfuse.flushAsync();
+        console.log("✅ Langfuse flushed");
       }
     })();
 

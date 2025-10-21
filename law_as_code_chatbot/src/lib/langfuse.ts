@@ -14,5 +14,11 @@ if (!process.env.LANGFUSE_SECRET_KEY || !process.env.LANGFUSE_PUBLIC_KEY) {
 export const langfuse = new Langfuse({
   secretKey: process.env.LANGFUSE_SECRET_KEY!,
   publicKey: process.env.LANGFUSE_PUBLIC_KEY!,
-  baseUrl: process.env.LANGFUSE_HOST ?? "https://cloud.langfuse.com",
+  baseUrl: process.env.LANGFUSE_HOST!,
+  // // @ts-ignore: bypass unsupported fetch hook
+  // fetch: async (url, options) => {
+  //   // 强制重写目标 URL
+  //   const realUrl = url.replace("cloud.langfuse.com", "us.cloud.langfuse.com");
+  //   return fetch(realUrl, options);
+  // },
 });
