@@ -4,15 +4,15 @@ import { retrieve } from "@/lib/graph/nodes/retrieve";
 import { generateStream } from "@/lib/graph/nodes/generate";
 import { langfuse } from "@/lib/langfuse";
 
-
 // console.log("🔥 Chat route reached");
 // console.log("process.release:", process.release);
 // console.log("env check:", process.env.LANGFUSE_HOST);
 
-
-
 export async function POST(req: Request) {
-  const trace = langfuse.trace({ name: "chat-session" });
+  const trace = langfuse.trace({ 
+    name: "chat-session",
+    // metadata: { mode: "RAG", retriever: "MongoDB+Embeddings" }
+  });
 
   try {
     // const body = await req.json();
@@ -25,11 +25,15 @@ export async function POST(req: Request) {
       });
     }
 
-    trace.event({name: "question", input: { message },});
+    trace.event({ name: "question", input: { message } });
 
     // Retrieve
     const { context } = await retrieve({ question: message });
-    trace.event({name: "retrieved", output: context});
+    trace.event({
+      name: "retrieved",
+      output: context,
+      metadata: { retrieval: true, retriever: "MongoDB+Embeddings" }
+    });
 
     // Streaming
     const encoder = new TextEncoder();

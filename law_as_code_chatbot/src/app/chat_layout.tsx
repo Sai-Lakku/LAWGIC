@@ -4,6 +4,12 @@
 import { Search, Book, Scale, MessageSquare, Plus, ChevronDown, ChevronRight, Filter, Copy, ThumbsUp, ThumbsDown, Send, RefreshCw } from 'lucide-react';
 import { useEffect, useState } from "react";
 
+// import ReactMarkdown from "react-markdown";
+// import remarkGfm from "remark-gfm";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
+
+
 
 function MessageTimestamp({ timestamp }: { timestamp?: string }) {
   const [clientTime, setClientTime] = useState<string | null>(null);
@@ -239,8 +245,21 @@ export default function Layout({
                         <Scale className="w-4 h-4 text-white" />
                       </div>
                       <div className="flex-1">
-                        <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
+                        {/* <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
                           <div className="text-gray-900 leading-relaxed">{msg.content}</div>
+                          {msg.confidence && (
+                            <div className="mt-3 text-xs text-gray-500">
+                              Confidence: {msg.confidence}%
+                            </div>
+                          )}
+                        </div> */}
+                        <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
+                          >
+                            {msg.content}
+                          </ReactMarkdown>
                           {msg.confidence && (
                             <div className="mt-3 text-xs text-gray-500">
                               Confidence: {msg.confidence}%
