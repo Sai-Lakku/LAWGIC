@@ -1,3 +1,5 @@
+// law_as_code_chatbot/src/lib/mongodb.ts
+// Script to load interpreted statutes from JSON files and push to MongoDB
 import fs from "fs";
 import path from "path";
 import { MongoClient } from "mongodb";

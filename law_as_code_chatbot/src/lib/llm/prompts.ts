@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/lib/prompts/rag.ts
 import {ChatPromptTemplate} from "@langchain/core/prompts";
 
 export const ragPrompt = ChatPromptTemplate.fromMessages([

@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/lib/llm/model.ts
 import {ChatOpenAI} from "@langchain/openai";
 import {OpenAIEmbeddings} from "@langchain/openai";
 

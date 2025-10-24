@@ -1,3 +1,5 @@
+// law_as_code_chatbot/src/lib/data/loaders/mongo.ts
+// Define MongoDB loader to fetch legal documents and convert to LangChain Documents
 import { MongoClient } from "mongodb";
 import { Document } from "langchain/document";
 import dotenv from "dotenv";

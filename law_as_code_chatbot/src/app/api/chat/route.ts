@@ -2,11 +2,7 @@
 export const runtime = "nodejs";
 import { retrieve } from "@/lib/graph/nodes/retrieve";
 import { generateStream } from "@/lib/graph/nodes/generate";
-import { langfuse } from "@/lib/langfuse";
-
-// console.log("🔥 Chat route reached");
-// console.log("process.release:", process.release);
-// console.log("env check:", process.env.LANGFUSE_HOST);
+import { langfuse } from "@/lib/langfuse/langfuse";
 
 export async function POST(req: Request) {
   const trace = langfuse.trace({ 
@@ -28,10 +24,11 @@ export async function POST(req: Request) {
     trace.event({ name: "question", input: { message } });
 
     // Retrieve
-    const { context } = await retrieve({ question: message });
+    const { context, references } = await retrieve({ question: message });
     trace.event({
       name: "retrieved",
-      output: context,
+      // output: context,
+      output: {context, references },
       metadata: { retrieval: true, retriever: "MongoDB+Embeddings" }
     });
 
@@ -43,7 +40,7 @@ export async function POST(req: Request) {
 
     (async () => {
       try {
-        for await (const part of generateStream({ question: message, context })) {
+        for await (const part of generateStream({ question: message, context, references })) {
           trace.event({ name: "generate-part", output: part });
           await writer.write(encoder.encode(part));
           await new Promise(r => setTimeout(r, 0));
@@ -55,8 +52,20 @@ export async function POST(req: Request) {
           metadata: { error: String(err), status: "error" }
         });
       } finally {
+        // await writer.close();
+        // await trace.update({ output: "stream finished" });
+        // 拼接引用 markdown
+        if (references && references.length > 0) {
+          const referencesBlock =
+            "\n\n**References:**\n" +
+            references.map(r => `- [${r.title}](${r.url})`).join("\n");
+
+          await writer.write(encoder.encode(referencesBlock));
+        }
+
         await writer.close();
         await trace.update({ output: "stream finished" });
+
         await langfuse.flushAsync();
         console.log("✅ Langfuse flushed");
       }

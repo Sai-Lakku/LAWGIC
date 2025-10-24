@@ -1,4 +1,4 @@
-// law_as_code_chatbot/src/lib/langfuse.ts
+// law_as_code_chatbot/src/lib/langfuse/langfuse.ts
 import dotenv from "dotenv";
 import path from "path";
 
