@@ -36,7 +36,7 @@ clientPromise = global._mongoClientPromise;
 export async function loadMongoAsDocs() {
   const client = await clientPromise;
   const db = client.db(dbName);
-  const collection = db.collection("statutes");
+  const collection = db.collection("laws");
 
   const rawDocs = await collection.find({}).toArray();
 
@@ -44,7 +44,7 @@ export async function loadMongoAsDocs() {
   const docs = rawDocs.map(
     (doc) =>
       new Document({
-        pageContent: doc.text ?? "", // main content of the law
+        pageContent: doc.content ?? "", // main content of the law
         metadata: {
           id: doc.id,
           url: doc.url,
@@ -55,6 +55,7 @@ export async function loadMongoAsDocs() {
         },
       })
   );
+  console.log(`🔍 Loaded ${docs.length} documents from Mongo.`);
 
   return docs;
 }

@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/lib/graph/state.ts
 import {Document} from "@langchain/core/documents";
 import {Annotation} from "@langchain/langgraph";
 

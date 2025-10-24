@@ -1,4 +1,4 @@
-// graph.ts
+// law_as_code_chatbot/src/lib/graph/graph.ts
 import {StateGraph} from "@langchain/langgraph";
 import {StateAnnotation} from "./state";
 import {retrieve} from "./nodes/retrieve";
