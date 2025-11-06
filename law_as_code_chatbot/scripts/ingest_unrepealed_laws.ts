@@ -24,10 +24,14 @@ async function main() {
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith(".json"));
   console.log(`🧾 Found ${files.length} total law files`);
 
+// ⏩ resume index if you’ve partially embedded already
+  const startIndex = 2400; // change this to wherever you want to resume
+  const filesToProcess = files.slice(startIndex);
+
   let inserted = 0;
   let skipped = 0;
 
-  for (const file of files) {
+  for (const file of filesToProcess) {
     const filePath = path.join(DATA_DIR, file);
     const json = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
@@ -38,7 +42,14 @@ async function main() {
     }
 
     // ✅ Prepare text for embedding
+    const MAX_CHARS = 30000;
     const textToEmbed = [json.title, json.text].filter(Boolean).join("\n\n");
+    // Skip or trim overly long text
+    if (textToEmbed.length > MAX_CHARS) {
+    console.log(`⚠️ Skipping ${json.id} (${textToEmbed.length} chars > limit)`);
+    skipped++;
+    continue;
+    }
 
     // 🧠 Get embedding
     const [embedding] = await embeddings.embedDocuments([textToEmbed]);

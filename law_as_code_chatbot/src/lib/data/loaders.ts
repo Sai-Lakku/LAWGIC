@@ -59,3 +59,47 @@ export async function loadMongoAsDocs() {
 
   return docs;
 }
+
+
+
+export async function loadEmbeddedLaws() {
+  const client = await clientPromise;
+  const db = client.db(dbName);
+  const collection = db.collection("new_laws");
+
+  // only load docs that have embeddings
+  const rows = await collection
+    .find(
+      { embedding: { $exists: true, $type: "array" } },
+      {
+        projection: {
+          id: 1,
+          url: 1,
+          title: 1,
+          repealed: 1,
+          rules: 1,
+          content: 1,
+          embedding: 1,
+        },
+      }
+    )
+    .toArray();
+
+  const embedded = rows.map((r) => ({
+    embedding: r.embedding as number[],
+    doc: new Document({
+      pageContent: r.content ?? "",
+      metadata: {
+        id: r.id,
+        url: r.url,
+        title: r.title,
+        repealed: r.repealed,
+        rules: r.rules,
+        _id: r._id?.toString?.(),
+      },
+    }),
+  }));
+
+  console.log(`📥 Loaded ${embedded.length} embedded docs from Mongo.`);
+  return embedded;
+}
