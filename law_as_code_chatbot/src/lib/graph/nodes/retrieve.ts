@@ -1,6 +1,6 @@
 // law_as_code_chatbot/src/lib/graph/nodes/retrieve.ts
 import {InputStateAnnotation} from "../state";
-import { buildMemoryRetriever } from "../../vectorstore/setup";
+import { buildMemoryRetriever } from "../../data/setup";
 
 type RefItem = { title: string; url?: string | null; cite?: string | null };
 
