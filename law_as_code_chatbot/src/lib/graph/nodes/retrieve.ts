@@ -7,8 +7,8 @@ type RefItem = { title: string; url?: string | null; cite?: string | null };
 export async function retrieve(state: typeof InputStateAnnotation.State) {
     const retriever = await buildMemoryRetriever();
     const docs = await retriever.getRelevantDocuments(state.question);
-    const context = docs.map(d => d.pageContent ?? "").join("\n\n");
-    const references: RefItem[] = docs.map(d => ({
+    const context = docs.map((d: any) => d.pageContent ?? "").join("\n\n");
+    const references: RefItem[] = docs.map((d: any) => ({
         title: d.metadata?.title ?? "Unknown statute",
         url: d.metadata?.url ?? null,
         cite: d.metadata?.id ?? null,

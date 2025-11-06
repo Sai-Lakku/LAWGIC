@@ -1,7 +1,7 @@
 // law_as_code_chatbot/src/lib/data/loaders/mongo.ts
 // Define MongoDB loader to fetch legal documents and convert to LangChain Documents
 import { MongoClient } from "mongodb";
-import { Document } from "langchain/document";
+import { Document } from "@langchain/core/documents";
 import dotenv from "dotenv";
 
 dotenv.config({ path: ".env.local" });
@@ -36,7 +36,7 @@ clientPromise = global._mongoClientPromise;
 export async function loadMongoAsDocs() {
   const client = await clientPromise;
   const db = client.db(dbName);
-  const collection = db.collection("laws");
+  const collection = db.collection("new_laws");
 
   const rawDocs = await collection.find({}).toArray();
 

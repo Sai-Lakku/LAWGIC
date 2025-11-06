@@ -32,7 +32,8 @@ export async function generate(state: typeof StateAnnotation.State) {
     context: contextWithRefs,
     references,
   });
-  const response = await llm.invoke(messages);
+  const response = await llm.invoke(messages.toChatMessages() as any);
+
   return {
     answer: String(response.content ?? ""),
     references
