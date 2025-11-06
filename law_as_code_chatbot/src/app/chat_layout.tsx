@@ -254,12 +254,28 @@ export default function Layout({
                           )}
                         </div> */}
                         <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
-                          <ReactMarkdown
+                          {/* <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
                           >
                             {msg.content}
-                          </ReactMarkdown>
+                          </ReactMarkdown> */}
+                          <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
+                          components={{
+                            a: ({ node, ...props }) => (
+                              <a
+                                {...props}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800"
+                              />
+                            ),
+                          }}
+                        >
+                          {msg.content}
+                        </ReactMarkdown>
                           {msg.confidence && (
                             <div className="mt-3 text-xs text-gray-500">
                               Confidence: {msg.confidence}%

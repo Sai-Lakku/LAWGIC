@@ -44,7 +44,13 @@ async function main() {
 
     // ✅ Prepare text for embedding
     const MAX_CHARS = 30000;
-    const textToEmbed = [json.title, json.text].filter(Boolean).join("\n\n");
+    // 🧹 Clean trailing "References:" section if present
+    const textToEmbed = [json.title, json.text]
+    .filter(Boolean)
+    .join("\n\n")
+    .replace(/References?[\s\S]*$/gi, "") // 移除从 "References:" 开始到文件末尾的所有内容
+    .trim();
+
     // Skip or trim overly long text
     if (textToEmbed.length > MAX_CHARS) {
     console.log(`⚠️ Skipping ${json.id} (${textToEmbed.length} chars > limit)`);

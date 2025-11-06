@@ -23,6 +23,7 @@ export async function POST(req: Request) {
 
     trace.event({ name: "question", input: { message } });
 
+
     // Retrieve
     const { context, references } = await retrieve({ question: message });
     trace.event({
@@ -37,10 +38,14 @@ export async function POST(req: Request) {
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
 
+    // Add for changing reference
+    const cleanContext = context
+      .replace(/References?:[\s\S]*$/gi, "")  // 去掉末尾的 "References:" 块
+      .trim();
 
     (async () => {
       try {
-        for await (const part of generateStream({ question: message, context, references })) {
+        for await (const part of generateStream({ question: message, context: cleanContext, references })) {
           trace.event({ name: "generate-part", output: part });
           await writer.write(encoder.encode(part));
           await new Promise(r => setTimeout(r, 0));
@@ -55,10 +60,17 @@ export async function POST(req: Request) {
         // await writer.close();
         // await trace.update({ output: "stream finished" });
         // 拼接引用 markdown
+
+        const uniqueReferences = Array.from(
+          new Map(references.map(r => [r.url, r])).values()
+        );
+
         if (references && references.length > 0) {
           const referencesBlock =
             "\n\n**References:**\n" +
-            references.map(r => `- [${r.title}](${r.url})`).join("\n");
+            uniqueReferences
+              .map((r, i) => `${i + 1}. [${r.title}](${r.url})`)
+              .join("\n");
 
           await writer.write(encoder.encode(referencesBlock));
         }
