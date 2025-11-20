@@ -36,7 +36,7 @@ clientPromise = global._mongoClientPromise;
 export async function loadMongoAsDocs() {
   const client = await clientPromise;
   const db = client.db(dbName);
-  const collection = db.collection("new_laws");
+  const collection = db.collection("upgrade_laws");
   // const collection = db.collection("law_without_reference");
 
   const rawDocs = await collection.find({}).toArray();
@@ -66,7 +66,7 @@ export async function loadMongoAsDocs() {
 export async function loadEmbeddedLaws() {
   const client = await clientPromise;
   const db = client.db(dbName);
-  const collection = db.collection("new_laws");
+  const collection = db.collection("upgrade_laws");
   // const collection = db.collection("law_without_reference");
 
   // only load docs that have embeddings

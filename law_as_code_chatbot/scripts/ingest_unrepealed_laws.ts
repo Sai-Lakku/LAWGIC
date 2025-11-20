@@ -19,14 +19,14 @@ const embeddings = new OpenAIEmbeddings({
 async function main() {
   await client.connect();
   const db = client.db("LAWGIC-DB");
-//   const col = db.collection("new_laws");
-  const col = db.collection("law_without_reference");
+  const col = db.collection("new_laws");
+//   const col = db.collection("law_without_reference");
 
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith(".json"));
   console.log(`🧾 Found ${files.length} total law files`);
 
 // ⏩ resume index if you’ve partially embedded already
-  const startIndex = 2400; // change this to wherever you want to resume
+  const startIndex = 0; // change this to wherever you want to resume
   const filesToProcess = files.slice(startIndex);
 
   let inserted = 0;
