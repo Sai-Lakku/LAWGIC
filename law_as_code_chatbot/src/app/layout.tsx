@@ -1,7 +1,6 @@
-// "use client";
-// layout.tsx
 import type { Metadata } from "next";
-import "./globals.css"; // optional if you have global styles
+import "./globals.css";
+import { Providers } from "./providers"; 
 
 export const metadata: Metadata = {
   title: "Law as Code Chatbot",
@@ -15,11 +14,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      {/* Add suppressHydrationWarning to ignore browser extension attributes */}
+      <body suppressHydrationWarning={true}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }
-
 
 
 

@@ -1,15 +1,12 @@
-// chat_layout.tsx
 "use client";
 
 import { Search, Book, Scale, MessageSquare, Plus, ChevronDown, ChevronRight, Filter, Copy, ThumbsUp, ThumbsDown, Send, RefreshCw } from 'lucide-react';
 import { useEffect, useState } from "react";
-
-// import ReactMarkdown from "react-markdown";
-// import remarkGfm from "remark-gfm";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
-
+// Import the Authentication Component (Make sure this file exists in src/components/)
+import { AuthSidebarItem } from "@/components/AuthSidebarItem";
 
 function MessageTimestamp({ timestamp }: { timestamp?: string }) {
   const [clientTime, setClientTime] = useState<string | null>(null);
@@ -120,14 +117,20 @@ export default function Layout({
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Left Sidebar */}
+      {/* ------------------------------------------------------------
+        LEFT SIDEBAR: Statute Database & User Settings
+        ------------------------------------------------------------
+      */}
       <div className={`${leftSidebarExpanded ? 'w-80' : 'w-16'} bg-white border-r border-gray-200 flex flex-col transition-all duration-300`}>
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center gap-2">
+          <button 
+            onClick={() => setLeftSidebarExpanded(!leftSidebarExpanded)}
+            className="flex items-center gap-2 focus:outline-none"
+          >
             <Book className="w-5 h-5 text-blue-600" />
             {leftSidebarExpanded && <span className="font-semibold text-gray-900">Statute Database</span>}
-          </div>
+          </button>
         </div>
 
         {leftSidebarExpanded && (
@@ -158,7 +161,9 @@ export default function Layout({
               </div>
             </div>
 
-            {/* Recent Section */}
+            {/* SCROLLABLE CONTENT AREA 
+              'flex-1' ensures this takes up all available space, pushing the Auth component to the bottom
+            */}
             <div className="flex-1 overflow-y-auto">
               <div className="px-4">
                 <button
@@ -206,11 +211,21 @@ export default function Layout({
                 )}
               </div>
             </div>
+
+            {/* AUTHENTICATION / USER PROFILE SECTION 
+               Placed here to stick to the bottom of the sidebar
+            */}
+            <div className="p-4 border-t border-gray-200">
+               <AuthSidebarItem />
+            </div>
           </>
         )}
       </div>
 
-      {/* Main Content Area */}
+      {/* ------------------------------------------------------------
+        MAIN CONTENT AREA: Chat Interface
+        ------------------------------------------------------------
+      */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4">
@@ -245,21 +260,7 @@ export default function Layout({
                         <Scale className="w-4 h-4 text-white" />
                       </div>
                       <div className="flex-1">
-                        {/* <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
-                          <div className="text-gray-900 leading-relaxed">{msg.content}</div>
-                          {msg.confidence && (
-                            <div className="mt-3 text-xs text-gray-500">
-                              Confidence: {msg.confidence}%
-                            </div>
-                          )}
-                        </div> */}
                         <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
-                          {/* <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
-                          >
-                            {msg.content}
-                          </ReactMarkdown> */}
                           <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
                           className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
@@ -359,7 +360,10 @@ export default function Layout({
         </div>
       </div>
 
-      {/* Right Sidebar */}
+      {/* ------------------------------------------------------------
+        RIGHT SIDEBAR: Chat History
+        ------------------------------------------------------------
+      */}
       <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
