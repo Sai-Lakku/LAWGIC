@@ -55,50 +55,31 @@ import { NextResponse } from 'next/server';
 import connectDB from '@/lib//databse_user/db';
 import { User } from '@/lib/databse_user/user';
 import bcrypt from 'bcryptjs';
+import nodemailer from 'nodemailer'; // 引入邮件库
 
 export async function POST(req: Request) {
   try {
-    console.log("---------------- START SEND-CODE DEBUG ----------------");
+    const { email } = await req.json();
     
-    // 1. 打印接收到的原始请求体
-    const body = await req.json();
-    console.log("1. 接收到的 Body:", body);
-    
-    const { email } = body;
-    console.log("2. 解析出的 Email:", email);
-
     if (!email) {
-      console.log("❌ 错误: Email 为空");
       return NextResponse.json({ message: 'Email is required' }, { status: 400 });
     }
 
-    // 2. 连接数据库
-    console.log("3. 正在连接数据库...");
     await connectDB();
-    console.log("✅ 数据库连接成功");
 
-    // 3. 查询用户
-    console.log(`4. 正在数据库查找用户: ${email}`);
+    // 1. 检查用户状态
     let user = await User.findOne({ email });
-    console.log("5. 查询结果:", user ? `找到用户 (ID: ${user._id})` : "未找到用户 (null)");
-
-    if (user) {
-        console.log("   - 用户 isVerified 状态:", user.isVerified);
-    }
-
-    // 4. 判断逻辑
     if (user && user.isVerified) {
-        console.log("❌ 拒绝: 用户已存在且已验证，返回 400");
         return NextResponse.json({ message: 'User already exists. Please login.' }, { status: 400 });
     }
 
-    // 5. 生成验证码
+    // 2. 生成验证码
     const code = Math.floor(100000 + Math.random() * 900000).toString();
-    const expires = new Date(Date.now() + 10 * 60 * 1000);
-    console.log(`6. 生成验证码: ${code}`);
+    const expires = new Date(Date.now() + 10 * 60 * 1000); // 10分钟有效期
 
+    // 3. 更新或创建数据库记录
     if (!user) {
-        console.log("7. 创建新临时用户...");
+        // 创建临时用户
         const tempPassword = await bcrypt.hash(Math.random().toString(), 10);
         user = await User.create({ 
             email, 
@@ -107,21 +88,50 @@ export async function POST(req: Request) {
             verificationCodeExpires: expires,
             isVerified: false
         });
-        console.log("✅ 新用户创建成功");
     } else {
-        console.log("7. 更新现有未验证用户...");
+        // 更新未验证的老用户
         user.verificationCode = code;
         user.verificationCodeExpires = expires;
         await user.save();
-        console.log("✅ 用户更新成功");
     }
 
-    console.log("---------------- END DEBUG ----------------");
-    return NextResponse.json({ message: 'Code sent' }, { status: 200 });
+    // 4. 配置邮件发送器 (使用 Gmail)
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // 从 .env 读取
+        pass: process.env.EMAIL_PASS, // 从 .env 读取
+      },
+    });
+
+    // 5. 发送邮件
+    // 这里我们设计一个简单的 HTML 邮件样式
+    const mailOptions = {
+      from: `"LAWGIC Team" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: 'Your LAWGIC Verification Code',
+      text: `Your verification code is: ${code}`, // 纯文本备份
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+          <h2 style="color: #2563eb;">LAWGIC</h2>
+          <p>Hello,</p>
+          <p>You are registering for LAWGIC. Please use the following code to complete your sign-up:</p>
+          <div style="background-color: #f3f4f6; padding: 15px; border-radius: 5px; text-align: center; margin: 20px 0;">
+            <span style="font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #000;">${code}</span>
+          </div>
+          <p>This code will expire in 10 minutes.</p>
+          <p style="font-size: 12px; color: #666; margin-top: 30px;">If you didn't request this, please ignore this email.</p>
+        </div>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`✅ Email sent to ${email}`);
+
+    return NextResponse.json({ message: 'Code sent successfully' }, { status: 200 });
 
   } catch (error) {
-    console.error("❌ 发生严重错误:", error);
-    // 这里即使报错也返回 200 并带上错误信息，方便我们在前端看到（仅调试用）
-    return NextResponse.json({ message: `Server Error: ${error}` }, { status: 500 });
+    console.error("❌ Send Email Error:", error);
+    return NextResponse.json({ message: 'Failed to send email' }, { status: 500 });
   }
 }
