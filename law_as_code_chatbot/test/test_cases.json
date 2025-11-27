@@ -1,0 +1,332 @@
+[
+  {
+    "id": "test_001",
+    "prompt": "What are the requirements for forming an LLC in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 322C.0201", "Minn. Stat. § 322C.0202"],
+    "category": "business_law"
+  },
+  {
+    "id": "test_002",
+    "prompt": "Can you tell me about Minnesota LLC formation requirements?",
+    "expectedStatutes": ["Minn. Stat. § 322C.0201", "Minn. Stat. § 322C.0202"],
+    "category": "business_law"
+  },
+  {
+    "id": "test_003",
+    "prompt": "What is the statute of limitations for personal injury claims in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 541.07"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_004",
+    "prompt": "How long do I have to file a personal injury lawsuit in MN?",
+    "expectedStatutes": ["Minn. Stat. § 541.07"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_005",
+    "prompt": "What are the penalties for DUI in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 169A.20", "Minn. Stat. § 169A.27"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_006",
+    "prompt": "What happens if I get arrested for drunk driving in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 169A.20", "Minn. Stat. § 169A.27"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_007",
+    "prompt": "What are Minnesota's child custody laws?",
+    "expectedStatutes": ["Minn. Stat. § 518.17", "Minn. Stat. § 518.175"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_008",
+    "prompt": "How does Minnesota determine custody in divorce cases?",
+    "expectedStatutes": ["Minn. Stat. § 518.17", "Minn. Stat. § 518.175"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_009",
+    "prompt": "What is the minimum wage in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 177.24"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_010",
+    "prompt": "Tell me about Minnesota minimum wage requirements",
+    "expectedStatutes": ["Minn. Stat. § 177.24"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_011",
+    "prompt": "What are the rules for landlord security deposits in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 504B.178"],
+    "category": "housing_law"
+  },
+  {
+    "id": "test_012",
+    "prompt": "How long does a landlord have to return my security deposit in MN?",
+    "expectedStatutes": ["Minn. Stat. § 504B.178"],
+    "category": "housing_law"
+  },
+  {
+    "id": "test_013",
+    "prompt": "What are Minnesota's requirements for eviction notices?",
+    "expectedStatutes": ["Minn. Stat. § 504B.135", "Minn. Stat. § 504B.321"],
+    "category": "housing_law"
+  },
+  {
+    "id": "test_014",
+    "prompt": "Can my landlord evict me without notice in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 504B.135", "Minn. Stat. § 504B.321"],
+    "category": "housing_law"
+  },
+  {
+    "id": "test_015",
+    "prompt": "What is the legal BAC limit for DUI in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 169A.20"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_016",
+    "prompt": "At what blood alcohol level am I considered legally drunk in MN?",
+    "expectedStatutes": ["Minn. Stat. § 169A.20"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_017",
+    "prompt": "What are the penalties for theft in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 609.52"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_018",
+    "prompt": "What happens if I'm charged with shoplifting in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 609.52"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_019",
+    "prompt": "What are Minnesota's workers compensation laws?",
+    "expectedStatutes": ["Minn. Stat. § 176.021", "Minn. Stat. § 176.101"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_020",
+    "prompt": "How do I file for workers comp in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 176.021", "Minn. Stat. § 176.101"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_021",
+    "prompt": "What are the rules for child support in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 518A.26", "Minn. Stat. § 518A.35"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_022",
+    "prompt": "How is child support calculated in MN?",
+    "expectedStatutes": ["Minn. Stat. § 518A.26", "Minn. Stat. § 518A.35"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_023",
+    "prompt": "What are Minnesota's requirements for a valid will?",
+    "expectedStatutes": ["Minn. Stat. § 524.2-502", "Minn. Stat. § 524.2-503"],
+    "category": "estate_law"
+  },
+  {
+    "id": "test_024",
+    "prompt": "How do I make a legal will in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 524.2-502", "Minn. Stat. § 524.2-503"],
+    "category": "estate_law"
+  },
+  {
+    "id": "test_025",
+    "prompt": "What is the homestead exemption in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 510.01", "Minn. Stat. § 510.02"],
+    "category": "property_law"
+  },
+  {
+    "id": "test_026",
+    "prompt": "Tell me about Minnesota homestead protection laws",
+    "expectedStatutes": ["Minn. Stat. § 510.01", "Minn. Stat. § 510.02"],
+    "category": "property_law"
+  },
+  {
+    "id": "test_027",
+    "prompt": "What are the requirements for a restraining order in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 518B.01"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_028",
+    "prompt": "How do I get an order for protection in MN?",
+    "expectedStatutes": ["Minn. Stat. § 518B.01"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_029",
+    "prompt": "What are Minnesota's lemon law protections for cars?",
+    "expectedStatutes": ["Minn. Stat. § 325F.665"],
+    "category": "consumer_law"
+  },
+  {
+    "id": "test_030",
+    "prompt": "Does Minnesota have a lemon law for defective vehicles?",
+    "expectedStatutes": ["Minn. Stat. § 325F.665"],
+    "category": "consumer_law"
+  },
+  {
+    "id": "test_031",
+    "prompt": "What are the rules for unemployment benefits in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 268.085", "Minn. Stat. § 268.095"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_032",
+    "prompt": "How do I qualify for unemployment in MN?",
+    "expectedStatutes": ["Minn. Stat. § 268.085", "Minn. Stat. § 268.095"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_033",
+    "prompt": "What are Minnesota's rules for non-compete agreements?",
+    "expectedStatutes": ["Minn. Stat. § 181.988"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_034",
+    "prompt": "Are non-compete clauses enforceable in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 181.988"],
+    "category": "employment_law"
+  },
+  {
+    "id": "test_035",
+    "prompt": "What are the penalties for domestic assault in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 609.2242"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_036",
+    "prompt": "What happens if I'm charged with domestic violence in MN?",
+    "expectedStatutes": ["Minn. Stat. § 609.2242"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_037",
+    "prompt": "What are Minnesota's medical malpractice laws?",
+    "expectedStatutes": ["Minn. Stat. § 145.682", "Minn. Stat. § 541.076"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_038",
+    "prompt": "Can I sue for medical malpractice in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 145.682", "Minn. Stat. § 541.076"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_039",
+    "prompt": "What are the requirements for probate in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 524.3-301", "Minn. Stat. § 524.3-302"],
+    "category": "estate_law"
+  },
+  {
+    "id": "test_040",
+    "prompt": "How does probate work in MN?",
+    "expectedStatutes": ["Minn. Stat. § 524.3-301", "Minn. Stat. § 524.3-302"],
+    "category": "estate_law"
+  },
+  {
+    "id": "test_041",
+    "prompt": "What are Minnesota's data privacy laws?",
+    "expectedStatutes": ["Minn. Stat. § 13.01", "Minn. Stat. § 325M.01"],
+    "category": "privacy_law"
+  },
+  {
+    "id": "test_042",
+    "prompt": "What privacy protections do Minnesota residents have?",
+    "expectedStatutes": ["Minn. Stat. § 13.01", "Minn. Stat. § 325M.01"],
+    "category": "privacy_law"
+  },
+  {
+    "id": "test_043",
+    "prompt": "What are the rules for divorce in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 518.06", "Minn. Stat. § 518.10"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_044",
+    "prompt": "How do I file for divorce in MN?",
+    "expectedStatutes": ["Minn. Stat. § 518.06", "Minn. Stat. § 518.10"],
+    "category": "family_law"
+  },
+  {
+    "id": "test_045",
+    "prompt": "What are Minnesota's gun laws?",
+    "expectedStatutes": ["Minn. Stat. § 624.712", "Minn. Stat. § 624.714"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_046",
+    "prompt": "What do I need to carry a firearm in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 624.712", "Minn. Stat. § 624.714"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_047",
+    "prompt": "What are the penalties for drug possession in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 152.024", "Minn. Stat. § 152.025"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_048",
+    "prompt": "What happens if I'm caught with drugs in MN?",
+    "expectedStatutes": ["Minn. Stat. § 152.024", "Minn. Stat. § 152.025"],
+    "category": "criminal_law"
+  },
+  {
+    "id": "test_049",
+    "prompt": "What are Minnesota's dog bite laws?",
+    "expectedStatutes": ["Minn. Stat. § 347.22"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_050",
+    "prompt": "Am I liable if my dog bites someone in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 347.22"],
+    "category": "civil_law"
+  },
+  {
+    "id": "test_051",
+    "prompt": "What are the business registration requirements in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 333.001"],
+    "category": "business_law"
+  },
+  {
+    "id": "test_052",
+    "prompt": "How do I register a business name in MN?",
+    "expectedStatutes": ["Minn. Stat. § 333.001"],
+    "category": "business_law"
+  },
+  {
+    "id": "test_053",
+    "prompt": "What are Minnesota's consumer fraud protections?",
+    "expectedStatutes": ["Minn. Stat. § 325F.69"],
+    "category": "consumer_law"
+  },
+  {
+    "id": "test_054",
+    "prompt": "Can I sue for deceptive business practices in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 325F.69"],
+    "category": "consumer_law"
+  },
+  {
+    "id": "test_055",
+    "prompt": "What are the requirements for a mechanic's lien in Minnesota?",
+    "expectedStatutes": ["Minn. Stat. § 514.08"],
+    "category": "property_law"
+  }
+]

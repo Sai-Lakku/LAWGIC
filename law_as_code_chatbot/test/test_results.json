@@ -1,0 +1,803 @@
+[
+  {
+    "testId": "test_001",
+    "prompt": "What are the requirements for forming an LLC in Minnesota?",
+    "response": "\n\n**References:**\n1. [322C.0208 ANNUAL REPORT FOR SECRETARY OF STATE.](https://www.revisor.mn.gov/statutes/cite/322C.0208)\n2. [5.34 ANNUAL RENEWAL FILINGS.](https://www.revisor.mn.gov/statutes/cite/5.34)\n3. [322C.0101 CITATION.](https://www.revisor.mn.gov/statutes/cite/322C.0101)\n4. [270C.101 APPLICATION FOR BUSINESS REGISTRATION; CERTAIN INFORMATION NOT REQUIRED.](https://www.revisor.mn.gov/statutes/cite/270C.101)\n5. [116O.03 CORPORATION; BOARD OF DIRECTORS; POWERS.](https://www.revisor.mn.gov/statutes/cite/116O.03)",
+    "expectedStatutes": [
+      "Minn. Stat. § 322C.0201",
+      "Minn. Stat. § 322C.0202"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:19.246Z",
+    "category": "business_law"
+  },
+  {
+    "testId": "test_002",
+    "prompt": "Can you tell me about Minnesota LLC formation requirements?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [322C.0208 ANNUAL REPORT FOR SECRETARY OF STATE.](https://www.revisor.mn.gov/statutes/cite/322C.0208)\n2. [5.34 ANNUAL RENEWAL FILINGS.](https://www.revisor.mn.gov/statutes/cite/5.34)\n3. [116O.03 CORPORATION; BOARD OF DIRECTORS; POWERS.](https://www.revisor.mn.gov/statutes/cite/116O.03)\n4. [270C.101 APPLICATION FOR BUSINESS REGISTRATION; CERTAIN INFORMATION NOT REQUIRED.](https://www.revisor.mn.gov/statutes/cite/270C.101)\n5. [116S.02 CORPORATION; MEMBERS; BOARD OF DIRECTORS; POWERS.](https://www.revisor.mn.gov/statutes/cite/116S.02)",
+    "expectedStatutes": [
+      "Minn. Stat. § 322C.0201",
+      "Minn. Stat. § 322C.0202"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:25.762Z",
+    "category": "business_law"
+  },
+  {
+    "testId": "test_003",
+    "prompt": "What is the statute of limitations for personal injury claims in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [176.151 TIME LIMITATIONS.](https://www.revisor.mn.gov/statutes/cite/176.151)\n2. [325D.64 STATUTE OF LIMITATIONS.](https://www.revisor.mn.gov/statutes/cite/325D.64)\n3. [115B.30 ELIGIBLE INJURY AND DAMAGE.](https://www.revisor.mn.gov/statutes/cite/115B.30)\n4. [611A.84 STATUTE OF LIMITATIONS.](https://www.revisor.mn.gov/statutes/cite/611A.84)\n5. [3.736 TORT CLAIMS.](https://www.revisor.mn.gov/statutes/cite/3.736)",
+    "expectedStatutes": [
+      "Minn. Stat. § 541.07"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:31.971Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_004",
+    "prompt": "How long do I have to file a personal injury lawsuit in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [115B.30 ELIGIBLE INJURY AND DAMAGE.](https://www.revisor.mn.gov/statutes/cite/115B.30)\n2. [176.151 TIME LIMITATIONS.](https://www.revisor.mn.gov/statutes/cite/176.151)\n3. [3.751 CONTRACT CLAIMS.](https://www.revisor.mn.gov/statutes/cite/3.751)\n4. [115B.29 ELIGIBLE PERSONS.](https://www.revisor.mn.gov/statutes/cite/115B.29)\n5. [216D.09 INJUNCTIVE RELIEF.](https://www.revisor.mn.gov/statutes/cite/216D.09)",
+    "expectedStatutes": [
+      "Minn. Stat. § 541.07"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:37.042Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_005",
+    "prompt": "What are the penalties for DUI in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [169A.24 FIRST-DEGREE DRIVING WHILE IMPAIRED.](https://www.revisor.mn.gov/statutes/cite/169A.24)\n2. [169A.52 TEST REFUSAL OR FAILURE; LICENSE REVOCATION.](https://www.revisor.mn.gov/statutes/cite/169A.52)\n3. [296A.23 CRIMINAL PENALTIES.](https://www.revisor.mn.gov/statutes/cite/296A.23)\n4. [297G.19 CRIMINAL PENALTIES.](https://www.revisor.mn.gov/statutes/cite/297G.19)\n5. [169A.44 CONDITIONAL RELEASE.](https://www.revisor.mn.gov/statutes/cite/169A.44)",
+    "expectedStatutes": [
+      "Minn. Stat. § 169A.20",
+      "Minn. Stat. § 169A.27"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:42.456Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_006",
+    "prompt": "What happens if I get arrested for drunk driving in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [169A.44 CONDITIONAL RELEASE.](https://www.revisor.mn.gov/statutes/cite/169A.44)\n2. [169A.52 TEST REFUSAL OR FAILURE; LICENSE REVOCATION.](https://www.revisor.mn.gov/statutes/cite/169A.52)\n3. [169A.24 FIRST-DEGREE DRIVING WHILE IMPAIRED.](https://www.revisor.mn.gov/statutes/cite/169A.24)\n4. [629.404 COUNTIES OR MUNICIPALITIES CAUSING ARREST; REQUIRING RETURN TRANSPORTATION.](https://www.revisor.mn.gov/statutes/cite/629.404)\n5. [297G.19 CRIMINAL PENALTIES.](https://www.revisor.mn.gov/statutes/cite/297G.19)",
+    "expectedStatutes": [
+      "Minn. Stat. § 169A.20",
+      "Minn. Stat. § 169A.27"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:48.444Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_007",
+    "prompt": "What are Minnesota's child custody laws?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [518.68 REQUIRED NOTICES.](https://www.revisor.mn.gov/statutes/cite/518.68)\n2. [257C.02 APPLICATION OF OTHER LAW; CONSTRUCTION.](https://www.revisor.mn.gov/statutes/cite/257C.02)\n3. [524.5-2011 COMPLIANCE WITH FEDERAL INDIAN CHILD WELFARE ACT AND MINNESOTA INDIAN FAMILY PRESERVATION ACT.](https://www.revisor.mn.gov/statutes/cite/524.5-2011)\n4. [260E.015 COMPLIANCE WITH FEDERAL INDIAN CHILD WELFARE ACT AND MINNESOTA INDIAN FAMILY PRESERVATION ACT.](https://www.revisor.mn.gov/statutes/cite/260E.015)\n5. [260D.011 COMPLIANCE WITH FEDERAL INDIAN CHILD WELFARE ACT AND MINNESOTA INDIAN FAMILY PRESERVATION ACT.](https://www.revisor.mn.gov/statutes/cite/260D.011)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518.17",
+      "Minn. Stat. § 518.175"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:43:53.995Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_008",
+    "prompt": "How does Minnesota determine custody in divorce cases?",
+    "response": "In Minnesota, custody determinations in divorce cases are guided by an evaluation of the best interests of the child. The court applies factors outlined in section 518.17, subdivision 1, which include considerations like each parent's relationship with the child, the child's needs, and the stability of each parent's home. Additionally, section 518.155 mandates that the court must have jurisdiction under chapter 518D for any orders affecting custody. The fact that parents are unmarried is not determinative in custody decisions.\n\n**References:**\n1. [257C.02 APPLICATION OF OTHER LAW; CONSTRUCTION.](https://www.revisor.mn.gov/statutes/cite/257C.02)\n2. [257C.03 PROCEDURE.](https://www.revisor.mn.gov/statutes/cite/257C.03)\n3. [257.025 CUSTODY AND PARENTING TIME DISPUTES.](https://www.revisor.mn.gov/statutes/cite/257.025)\n4. [518.155 CUSTODY DETERMINATIONS.](https://www.revisor.mn.gov/statutes/cite/518.155)\n5. [518.68 REQUIRED NOTICES.](https://www.revisor.mn.gov/statutes/cite/518.68)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518.17",
+      "Minn. Stat. § 518.175"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:43:59.850Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_009",
+    "prompt": "What is the minimum wage in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [177.22 STATEMENT OF PURPOSE.](https://www.revisor.mn.gov/statutes/cite/177.22)\n2. [116L.561 MINNESOTA YOUTH PROGRAM.](https://www.revisor.mn.gov/statutes/cite/116L.561)\n3. [161.365 HIGHWAY CONTRACT SPECIFICATIONS; MINIMUM WAGE.](https://www.revisor.mn.gov/statutes/cite/161.365)\n4. [256B.4906 SUBMINIMUM WAGES IN HOME AND COMMUNITY-BASED SERVICES REPORTING.](https://www.revisor.mn.gov/statutes/cite/256B.4906)\n5. [270B.162 DISCLOSURE; MINIMUM WAGE STUDY.](https://www.revisor.mn.gov/statutes/cite/270B.162)",
+    "expectedStatutes": [
+      "Minn. Stat. § 177.24"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:44:04.912Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_010",
+    "prompt": "Tell me about Minnesota minimum wage requirements",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [177.22 STATEMENT OF PURPOSE.](https://www.revisor.mn.gov/statutes/cite/177.22)\n2. [116L.561 MINNESOTA YOUTH PROGRAM.](https://www.revisor.mn.gov/statutes/cite/116L.561)\n3. [270B.162 DISCLOSURE; MINIMUM WAGE STUDY.](https://www.revisor.mn.gov/statutes/cite/270B.162)\n4. [256B.4906 SUBMINIMUM WAGES IN HOME AND COMMUNITY-BASED SERVICES REPORTING.](https://www.revisor.mn.gov/statutes/cite/256B.4906)\n5. [181.173 SALARY RANGES REQUIRED IN JOB POSTINGS.](https://www.revisor.mn.gov/statutes/cite/181.173)",
+    "expectedStatutes": [
+      "Minn. Stat. § 177.24"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:44:12.698Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_011",
+    "prompt": "What are the rules for landlord security deposits in Minnesota?",
+    "response": "In Minnesota, the rules for landlord security deposits in residential rental agreements are as follows:\n\n1. **Interest**: Deposits must bear simple noncompounded interest at a rate of 1% per annum, calculated from the first day of the month following the full payment of the deposit.\n\n2. **Return of Deposit**: The landlord must return the deposit, along with accrued interest, within three weeks after the end of the tenancy, or within five days if the tenant vacates due to legal condemnation for reasons not caused by the tenant's conduct.\n\n3. **Withholding**: The landlord may withhold amounts from the deposit to cover tenant defaults in rent or to restore the premises to its original condition, excluding ordinary wear and tear. \n\n4. **Written Statement**: If any deductions are made, the landlord must provide a written statement explaining the specific reasons for withholding the deposit.\n\n5. **Burden of Proof**: In any disputes over deposits, the landlord must prove the reason for retention by a fair preponderance of evidence.\n\n6. **Penalties for Non-Compliance**: Landlords who do not comply with the rules are liable for damages equal to the wrongfully withheld portion of the deposit and its interest, plus punitive damages if retention is in bad faith.\n\n7. **Transfer of Landlord Interest**: Upon transfer of the landlord's interest in the property, the deposit must either be transferred to the new owner with notice to the tenant or returned to the tenant.\n\n8. **Action for Recovery**: Tenants can bring an action to recover a deposit in the county where the property is located or in the landlord's county of residence.\n\n9. **Non-Waiver**: These rules cannot be waived by contract.\n\n10. **Commencement Date**: Applies only to tenancies starting or renewed on or after July 1, 1973.\n\n(References: 504B.178)\n\n**References:**\n1. [80F.12 SECURITY DEPOSIT.](https://www.revisor.mn.gov/statutes/cite/80F.12)\n2. [504B.178 INTEREST ON SECURITY DEPOSITS; WITHHOLDING SECURITY DEPOSITS; DAMAGES; LIMIT ON WITHHOLDING LAST MONTH'S RENT.](https://www.revisor.mn.gov/statutes/cite/504B.178)\n3. [290.9705 SURETY DEPOSITS REQUIRED FOR CONSTRUCTION CONTRACTS.](https://www.revisor.mn.gov/statutes/cite/290.9705)\n4. [60A.10 DEPOSITS FOR PROTECTION OF POLICYHOLDERS.](https://www.revisor.mn.gov/statutes/cite/60A.10)\n5. [504B.175 PRELEASE DEPOSIT.](https://www.revisor.mn.gov/statutes/cite/504B.175)",
+    "expectedStatutes": [
+      "Minn. Stat. § 504B.178"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:44:22.184Z",
+    "category": "housing_law"
+  },
+  {
+    "testId": "test_012",
+    "prompt": "How long does a landlord have to return my security deposit in MN?",
+    "response": "A landlord in Minnesota has three weeks after the termination of the tenancy to return your security deposit, along with any interest, or provide a written statement specifying the reasons for withholding any portion of the deposit. If you left the dwelling due to legal condemnation not caused by your conduct, the landlord has five days to return the deposit or provide the statement, following receipt of your mailing address or delivery instructions.\n\n**References:**\n1. [504B.178 INTEREST ON SECURITY DEPOSITS; WITHHOLDING SECURITY DEPOSITS; DAMAGES; LIMIT ON WITHHOLDING LAST MONTH'S RENT.](https://www.revisor.mn.gov/statutes/cite/504B.178)\n2. [80F.12 SECURITY DEPOSIT.](https://www.revisor.mn.gov/statutes/cite/80F.12)\n3. [504B.175 PRELEASE DEPOSIT.](https://www.revisor.mn.gov/statutes/cite/504B.175)\n4. [514.977 ADDITIONAL REMEDIES.](https://www.revisor.mn.gov/statutes/cite/514.977)\n5. [47.208 DELIVERY OF SATISFACTION OF MORTGAGE.](https://www.revisor.mn.gov/statutes/cite/47.208)",
+    "expectedStatutes": [
+      "Minn. Stat. § 504B.178"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.2,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:44:27.224Z",
+    "category": "housing_law"
+  },
+  {
+    "testId": "test_013",
+    "prompt": "What are Minnesota's requirements for eviction notices?",
+    "response": "To initiate an eviction action in Minnesota, the following requirements apply:\n\n1. **Complaint Filing**: The complainant must file a complaint with the court, stating the full name and date of birth of the person against whom the complaint is made if known, a description of the premises, the facts authorizing the recovery of possession, and asking for recovery. The lack of a full name and date of birth does not invalidate the complaint.\n\n2. **Written Notice for Nonpayment of Rent**: Before filing an eviction action for nonpayment of rent, the landlord must provide written notice to the tenant. The notice must include:\n   - Total amount due.\n   - Specific accounting of amounts for unpaid rent, late fees, and other charges.\n   - Name and address of the person authorized to receive rent and fees.\n   - Information about the tenant’s right to seek legal help and apply for financial assistance.\n   - A statement indicating the landlord can file for eviction if the tenant does not pay the total amount due or vacate within 14 days.\n\n3. **Service of Notice**: The notice must be delivered personally or by first-class mail to the tenant at the leased premises address.\n\nFailure to comply with notice requirements may result in the court dismissing the eviction action without prejudice and granting an expungement of the eviction case court file.\n\n4. **Expedited Hearings**: In cases involving behavior endangering others or significant property damage, an expedited hearing may be scheduled. Specific facts must support the need for such a hearing.\n\n5. **Summons**: Summons in eviction actions shall be issued with an appearance date not less than seven nor more than 14 days from the issuance date. Expedited hearings, however, may have different timeframes.\n\nIf these requirements are not met, the court has the authority to dismiss the eviction action and expunge the records.\n\n**References:**\n1. [504B.321 COMPLAINT AND SUMMONS.](https://www.revisor.mn.gov/statutes/cite/504B.321)\n2. [580.04 REQUISITES OF NOTICE.](https://www.revisor.mn.gov/statutes/cite/580.04)\n3. [580.042 FORECLOSURE ADVICE NOTICE TO TENANT.](https://www.revisor.mn.gov/statutes/cite/580.042)\n4. [559.21 CONTRACT TERMINATION; NOTICE; SERVICE; COSTS; CONDITIONS.](https://www.revisor.mn.gov/statutes/cite/559.21)\n5. [514.977 ADDITIONAL REMEDIES.](https://www.revisor.mn.gov/statutes/cite/514.977)",
+    "expectedStatutes": [
+      "Minn. Stat. § 504B.135",
+      "Minn. Stat. § 504B.321"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:44:35.587Z",
+    "category": "housing_law"
+  },
+  {
+    "testId": "test_014",
+    "prompt": "Can my landlord evict me without notice in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [580.042 FORECLOSURE ADVICE NOTICE TO TENANT.](https://www.revisor.mn.gov/statutes/cite/580.042)\n2. [504B.321 COMPLAINT AND SUMMONS.](https://www.revisor.mn.gov/statutes/cite/504B.321)\n3. [514.977 ADDITIONAL REMEDIES.](https://www.revisor.mn.gov/statutes/cite/514.977)\n4. [559.21 CONTRACT TERMINATION; NOTICE; SERVICE; COSTS; CONDITIONS.](https://www.revisor.mn.gov/statutes/cite/559.21)\n5. [580.04 REQUISITES OF NOTICE.](https://www.revisor.mn.gov/statutes/cite/580.04)",
+    "expectedStatutes": [
+      "Minn. Stat. § 504B.135",
+      "Minn. Stat. § 504B.321"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:44:40.598Z",
+    "category": "housing_law"
+  },
+  {
+    "testId": "test_015",
+    "prompt": "What is the legal BAC limit for DUI in Minnesota?",
+    "response": "The legal BAC limit for DUI in Minnesota is 0.08 alcohol concentration. If the person is driving a commercial motor vehicle, the limit is 0.04.\n\n**References:**\n1. [169A.51 CHEMICAL TESTS FOR INTOXICATION.](https://www.revisor.mn.gov/statutes/cite/169A.51)\n2. [169A.52 TEST REFUSAL OR FAILURE; LICENSE REVOCATION.](https://www.revisor.mn.gov/statutes/cite/169A.52)\n3. [169A.03 DEFINITIONS.](https://www.revisor.mn.gov/statutes/cite/169A.03)\n4. [169A.44 CONDITIONAL RELEASE.](https://www.revisor.mn.gov/statutes/cite/169A.44)\n5. [169A.24 FIRST-DEGREE DRIVING WHILE IMPAIRED.](https://www.revisor.mn.gov/statutes/cite/169A.24)",
+    "expectedStatutes": [
+      "Minn. Stat. § 169A.20"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:44:45.613Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_016",
+    "prompt": "At what blood alcohol level am I considered legally drunk in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [169A.51 CHEMICAL TESTS FOR INTOXICATION.](https://www.revisor.mn.gov/statutes/cite/169A.51)\n2. [169A.03 DEFINITIONS.](https://www.revisor.mn.gov/statutes/cite/169A.03)\n3. [169A.52 TEST REFUSAL OR FAILURE; LICENSE REVOCATION.](https://www.revisor.mn.gov/statutes/cite/169A.52)\n4. [340A.503 PERSONS UNDER 21; ILLEGAL ACTS.](https://www.revisor.mn.gov/statutes/cite/340A.503)\n5. [340A.101 DEFINITIONS.](https://www.revisor.mn.gov/statutes/cite/340A.101)",
+    "expectedStatutes": [
+      "Minn. Stat. § 169A.20"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:44:50.769Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_017",
+    "prompt": "What are the penalties for theft in Minnesota?",
+    "response": "The penalties for theft in Minnesota are categorized based on the value and nature of the property or services stolen:\n\n1. **Imprisonment for up to 20 years or a fine of up to $100,000**:\n   - If the property is a firearm.\n   - If the value exceeds $35,000.\n   - Certain specific violations.\n\n2. **Imprisonment for up to 10 years or a fine of up to $20,000**:\n   - If the value exceeds $5,000.\n   - For specific types of property like trade secrets, explosives, or certain controlled substances.\n\n3. **Imprisonment for up to 5 years or a fine of up to $10,000**:\n   - If the value is between $1,000 and $5,000, or for certain controlled substances.\n   - If the value is between $500 and $1,000 with a prior relevant conviction.\n\n4. **Imprisonment for up to 364 days or a fine of up to $3,000**:\n   - If the value is more than $500 but not more than $1,000.\n\n5. **Imprisonment for up to 90 days or a fine of up to $1,000**:\n   - If the value is $500 or less.\n\nPenalties are enhanced if the theft creates a reasonable risk of bodily harm.\n\n**References:**\n1. [609.54 EMBEZZLEMENT OF PUBLIC FUNDS.](https://www.revisor.mn.gov/statutes/cite/609.54)\n2. [318.06 PENALTIES.](https://www.revisor.mn.gov/statutes/cite/318.06)\n3. [80C.16 ENFORCEMENT; PENALTIES AND REMEDIES.](https://www.revisor.mn.gov/statutes/cite/80C.16)\n4. [609.52 THEFT.](https://www.revisor.mn.gov/statutes/cite/609.52)\n5. [609.53 RECEIVING STOLEN PROPERTY.](https://www.revisor.mn.gov/statutes/cite/609.53)",
+    "expectedStatutes": [
+      "Minn. Stat. § 609.52"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:44:57.481Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_018",
+    "prompt": "What happens if I'm charged with shoplifting in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [609.54 EMBEZZLEMENT OF PUBLIC FUNDS.](https://www.revisor.mn.gov/statutes/cite/609.54)\n2. [609.522 ORGANIZED RETAIL THEFT.](https://www.revisor.mn.gov/statutes/cite/609.522)\n3. [609.26 DEPRIVING ANOTHER OF CUSTODIAL OR PARENTAL RIGHTS.](https://www.revisor.mn.gov/statutes/cite/609.26)\n4. [289A.63 CRIMINAL PENALTIES.](https://www.revisor.mn.gov/statutes/cite/289A.63)\n5. [604.14 CIVIL LIABILITY FOR THEFT.](https://www.revisor.mn.gov/statutes/cite/604.14)",
+    "expectedStatutes": [
+      "Minn. Stat. § 609.52"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:45:02.800Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_019",
+    "prompt": "What are Minnesota's workers compensation laws?",
+    "response": "Minnesota's workers' compensation laws ensure the quick and efficient delivery of indemnity and medical benefits to injured workers at a reasonable cost to employers. Key points include:\n\n1. **Coverage and Compliance**: Employers must have workers' compensation insurance and provide evidence of compliance to receive business licenses or permits. Non-compliance may result in penalties.\n\n2. **Liability**: Employers are liable to pay compensation for work-related injuries or deaths regardless of negligence. Exceptions include injuries intentionally self-inflicted or caused by employee intoxication.\n\n3. **Notice Requirement**: Employers must conspicuously post notices about workers' compensation rights and obligations, with penalties for non-compliance.\n\n4. **Determination of Benefits**: Benefits are decided on their merits, not favoring either party. Compensation includes temporary total, temporary partial, permanent total, and permanent partial disability benefits.\n\n5. **Compensation Payment**: Payments should be made at intervals that coincide with wage periods, except for permanent partial disability, which may have specific intervals.\n\n6. **Disability and Additional Benefits**: Disability ratings are based on objective medical evidence, and additional benefits may be provided from accumulated sick leave, vacation, or overtime credits, but not exceeding the weekly wage.\n\n7. **Voluntary Programs**: Injuries from voluntary recreational programs do not qualify for compensation unless participation was required by the employer.\n\nFor more precise details, the relevant statutes include sections 60A.352, 176.001, 176.021, 176.139, and 176.182.\n\n**References:**\n1. [60A.352 WORKERS' COMPENSATION INSURANCE.](https://www.revisor.mn.gov/statutes/cite/60A.352)\n2. [176.001 INTENT OF THE LEGISLATURE.](https://www.revisor.mn.gov/statutes/cite/176.001)\n3. [176.139 NOTICE OF RIGHTS POSTED.](https://www.revisor.mn.gov/statutes/cite/176.139)\n4. [176.182 BUSINESS LICENSES OR PERMITS; COVERAGE REQUIRED.](https://www.revisor.mn.gov/statutes/cite/176.182)\n5. [176.021 APPLICATION TO EMPLOYERS AND EMPLOYEES.](https://www.revisor.mn.gov/statutes/cite/176.021)",
+    "expectedStatutes": [
+      "Minn. Stat. § 176.021",
+      "Minn. Stat. § 176.101"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:45:09.451Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_020",
+    "prompt": "How do I file for workers comp in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [60A.352 WORKERS' COMPENSATION INSURANCE.](https://www.revisor.mn.gov/statutes/cite/60A.352)\n2. [176.139 NOTICE OF RIGHTS POSTED.](https://www.revisor.mn.gov/statutes/cite/176.139)\n3. [176.182 BUSINESS LICENSES OR PERMITS; COVERAGE REQUIRED.](https://www.revisor.mn.gov/statutes/cite/176.182)\n4. [176.231 REPORT OF DEATH OR INJURY TO COMMISSIONER OF DEPARTMENT OF LABOR AND INDUSTRY.](https://www.revisor.mn.gov/statutes/cite/176.231)\n5. [176.001 INTENT OF THE LEGISLATURE.](https://www.revisor.mn.gov/statutes/cite/176.001)",
+    "expectedStatutes": [
+      "Minn. Stat. § 176.021",
+      "Minn. Stat. § 176.101"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0,
+    "timestamp": "2025-11-27T17:45:14.442Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_021",
+    "prompt": "What are the rules for child support in Minnesota?",
+    "response": "In Minnesota, child support rules are governed by specific statutes:\n\n1. **Ability to Pay** - A child support order should not exceed the obligor's ability to pay. The court calculates income available for support by subtracting a self-support reserve from the obligor's income, and adjustments are made based on specific guidelines (518A.42).\n\n2. **Minimum Support Amounts** - There are set minimum support amounts based on the number of children, ranging from $50 per month for one child to $100 for six or more children. Certain exceptions apply, such as incarceration or receiving certain public assistance (518A.42).\n\n3. **Potential Income** - If a parent is voluntarily unemployed or underemployed, child support may be based on potential income, considering the parent's qualifications and job opportunities (518A.32).\n\n4. **Seasonal Income** - For obligors with seasonal income, the court may establish monthly payments that reflect income variations (518A.38).\n\n5. **Tax Dependency Exemptions** - The court can allocate income tax dependency exemptions and consider factors like financial resources and tax benefits for determining the allocation (518A.38).\n\n6. **Modification of Support** - Support can be modified if there are significant changes in circumstances, such as job loss or pay reduction. However, modifications only take effect when ordered by the court (518.68).\n\nThese rules ensure that child support is fair, reflecting both the needs of the child and the financial ability of the parents.\n\n**References:**\n1. [518.68 REQUIRED NOTICES.](https://www.revisor.mn.gov/statutes/cite/518.68)\n2. [518A.42 ABILITY TO PAY; SELF-SUPPORT ADJUSTMENT.](https://www.revisor.mn.gov/statutes/cite/518A.42)\n3. [518A.38 MINOR CHILDREN; SUPPORT.](https://www.revisor.mn.gov/statutes/cite/518A.38)\n4. [257.066 RULES.](https://www.revisor.mn.gov/statutes/cite/257.066)\n5. [518A.32 POTENTIAL INCOME.](https://www.revisor.mn.gov/statutes/cite/518A.32)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518A.26",
+      "Minn. Stat. § 518A.35"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:45:21.635Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_022",
+    "prompt": "How is child support calculated in MN?",
+    "response": "Child support in Minnesota is calculated using the following steps:\n\n1. **Determine Each Parent’s Gross Income**: This involves finding each parent's gross income in accordance with section 518A.29.\n\n2. **Calculate Parental Income for Determining Child Support (PICS)**: Subtract any credits for nonjoint children from the gross income.\n\n3. **Contribution Percentage**: Determine each parent's contribution to the combined PICS by dividing each parent's PICS by the combined PICS.\n\n4. **Combined Basic Support Obligation**: This is determined by applying the guidelines in section 518A.35.\n\n5. **Each Parent’s Share**: Calculate each parent's share of the combined basic support obligation by multiplying their contribution percentage by the combined basic support obligation.\n\n6. **Parenting Expense Adjustment**: Apply the parenting expense adjustment formula found in section 518A.36 to determine the obligor's basic support obligation.\n\nAdditional considerations may include splitting custody or adjusting for child care, medical support, or uninsured medical expenses according to specific subsections and guidelines.\n\nFinally, the child support order must designate amounts for basic support, child care support, and medical support. Social Security or veterans' benefits affecting the support must also be considered.\n\nReferences:\n- 518A.34 COMPUTATION OF CHILD SUPPORT OBLIGATIONS.\n\n**References:**\n1. [518A.42 ABILITY TO PAY; SELF-SUPPORT ADJUSTMENT.](https://www.revisor.mn.gov/statutes/cite/518A.42)\n2. [518A.32 POTENTIAL INCOME.](https://www.revisor.mn.gov/statutes/cite/518A.32)\n3. [518A.34 COMPUTATION OF CHILD SUPPORT OBLIGATIONS.](https://www.revisor.mn.gov/statutes/cite/518A.34)\n4. [518.68 REQUIRED NOTICES.](https://www.revisor.mn.gov/statutes/cite/518.68)\n5. [290.0661 MINNESOTA CHILD TAX CREDIT.](https://www.revisor.mn.gov/statutes/cite/290.0661)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518A.26",
+      "Minn. Stat. § 518A.35"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:45:28.769Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_023",
+    "prompt": "What are Minnesota's requirements for a valid will?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [524.2-123 INSTRUMENTS REFERENCING INTESTACY LAWS.](https://www.revisor.mn.gov/statutes/cite/524.2-123)\n2. [289A.10 FILING REQUIREMENTS FOR ESTATE TAX RETURNS.](https://www.revisor.mn.gov/statutes/cite/289A.10)\n3. [171.0605 EVIDENCE OF IDENTITY AND LAWFUL PRESENCE.](https://www.revisor.mn.gov/statutes/cite/171.0605)\n4. [517.08 APPLICATION FOR LICENSE.](https://www.revisor.mn.gov/statutes/cite/517.08)\n5. [524.2-1004 INTERNATIONAL WILLS; OTHER POINTS OF FORM.](https://www.revisor.mn.gov/statutes/cite/524.2-1004)",
+    "expectedStatutes": [
+      "Minn. Stat. § 524.2-502",
+      "Minn. Stat. § 524.2-503"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:45:34.285Z",
+    "category": "estate_law"
+  },
+  {
+    "testId": "test_024",
+    "prompt": "How do I make a legal will in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [524.2-123 INSTRUMENTS REFERENCING INTESTACY LAWS.](https://www.revisor.mn.gov/statutes/cite/524.2-123)\n2. [524.2-711 FUTURE INTERESTS IN \"HEIRS,\" \"HEIRS AT LAW,\" OR \"NEXT OF KIN.\"](https://www.revisor.mn.gov/statutes/cite/524.2-711)\n3. [145B.01 CITATION.](https://www.revisor.mn.gov/statutes/cite/145B.01)\n4. [289A.10 FILING REQUIREMENTS FOR ESTATE TAX RETURNS.](https://www.revisor.mn.gov/statutes/cite/289A.10)\n5. [523.23 STATUTORY SHORT FORM OF GENERAL POWER OF ATTORNEY; FORMAL REQUIREMENTS; JOINT AGENTS.](https://www.revisor.mn.gov/statutes/cite/523.23)",
+    "expectedStatutes": [
+      "Minn. Stat. § 524.2-502",
+      "Minn. Stat. § 524.2-503"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:45:39.085Z",
+    "category": "estate_law"
+  },
+  {
+    "testId": "test_025",
+    "prompt": "What is the homestead exemption in Minnesota?",
+    "response": "The homestead exemption in Minnesota refers to the protection from seizure or sale under legal process for a debtor's house and associated land, within specified limits. The exemption applies to any quantity of land not exceeding 160 acres. The exemption value cannot exceed $510,000, or $1,275,000 if the homestead is primarily used for agricultural purposes. This exemption does not apply to certain valid charges such as lawful mortgages, tax liens, and claims related to labor or materials for construction or improvement.\n\nReferences:\n- [510.01](https://www.revisor.mn.gov/statutes/cite/510.01)\n- [510.02](https://www.revisor.mn.gov/statutes/cite/510.02)\n- [510.05](https://www.revisor.mn.gov/statutes/cite/510.05)\n\n**References:**\n1. [510.05 LIMITATIONS.](https://www.revisor.mn.gov/statutes/cite/510.05)\n2. [510.02 AREA AND VALUE; HOW LIMITED.](https://www.revisor.mn.gov/statutes/cite/510.02)\n3. [510.01 HOMESTEAD DEFINED; EXEMPT; EXCEPTION.](https://www.revisor.mn.gov/statutes/cite/510.01)\n4. [290A.25 VERIFICATION OF SOCIAL SECURITY OR INDIVIDUAL TAXPAYER IDENTIFICATION NUMBERS.](https://www.revisor.mn.gov/statutes/cite/290A.25)\n5. [510.06 EXEMPTION NOT LOST BY DEATH OR DESERTION.](https://www.revisor.mn.gov/statutes/cite/510.06)",
+    "expectedStatutes": [
+      "Minn. Stat. § 510.01",
+      "Minn. Stat. § 510.02"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 1,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:45:44.308Z",
+    "category": "property_law"
+  },
+  {
+    "testId": "test_026",
+    "prompt": "Tell me about Minnesota homestead protection laws",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [462A.057 MINNESOTA URBAN AND RURAL HOMESTEADING PROGRAM.](https://www.revisor.mn.gov/statutes/cite/462A.057)\n2. [515.04 STATUS OF THE APARTMENTS.](https://www.revisor.mn.gov/statutes/cite/515.04)\n3. [582.13 STATE MAY BE DEFENDANT IN CERTAIN CASES.](https://www.revisor.mn.gov/statutes/cite/582.13)\n4. [290A.25 VERIFICATION OF SOCIAL SECURITY OR INDIVIDUAL TAXPAYER IDENTIFICATION NUMBERS.](https://www.revisor.mn.gov/statutes/cite/290A.25)\n5. [290B.01 PURPOSE.](https://www.revisor.mn.gov/statutes/cite/290B.01)",
+    "expectedStatutes": [
+      "Minn. Stat. § 510.01",
+      "Minn. Stat. § 510.02"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:45:49.299Z",
+    "category": "property_law"
+  },
+  {
+    "testId": "test_027",
+    "prompt": "What are the requirements for a restraining order in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [629.75 DOMESTIC ABUSE NO CONTACT ORDER.](https://www.revisor.mn.gov/statutes/cite/629.75)\n2. [518.091 SUMMONS; TEMPORARY RESTRAINING PROVISIONS; NOTICE REGARDING PARENT EDUCATION PROGRAM REQUIREMENTS.](https://www.revisor.mn.gov/statutes/cite/518.091)\n3. [216D.09 INJUNCTIVE RELIEF.](https://www.revisor.mn.gov/statutes/cite/216D.09)\n4. [518.131 TEMPORARY ORDERS AND RESTRAINING ORDERS.](https://www.revisor.mn.gov/statutes/cite/518.131)\n5. [257D.08 ORDER.](https://www.revisor.mn.gov/statutes/cite/257D.08)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518B.01"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:45:54.059Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_028",
+    "prompt": "How do I get an order for protection in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [260C.405 VIOLATION OF AN ORDER FOR PROTECTION.](https://www.revisor.mn.gov/statutes/cite/260C.405)\n2. [609.3232 PROTECTIVE ORDER AUTHORIZED; PROCEDURES; PENALTIES.](https://www.revisor.mn.gov/statutes/cite/609.3232)\n3. [629.75 DOMESTIC ABUSE NO CONTACT ORDER.](https://www.revisor.mn.gov/statutes/cite/629.75)\n4. [518F.02 DEFINITIONS.](https://www.revisor.mn.gov/statutes/cite/518F.02)\n5. [518F.05 REGISTRATION OF CANADIAN ORDER FOR PROTECTION.](https://www.revisor.mn.gov/statutes/cite/518F.05)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518B.01"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0,
+    "timestamp": "2025-11-27T17:45:58.782Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_029",
+    "prompt": "What are Minnesota's lemon law protections for cars?",
+    "response": "Minnesota's lemon law provides the following protections for vehicles:\n\n1. **Manufacturer's Duty**: If a new motor vehicle does not conform to express warranties, and the nonconformity is reported within the warranty term or two years from purchase, the manufacturer must repair the vehicle.\n\n2. **Replacement or Refund**: If a reasonable number of attempts fail to fix a significant defect, the manufacturer must replace the vehicle or refund the purchase price, including taxes, fees, towing, and rental expenses, minus a reasonable use allowance.\n\n3. **Presumption of Reasonable Attempts**: This is established if a vehicle is repaired for the same issue four or more times, or out of service for cumulative 30 days within the warranty term or two years.\n\n4. **Serious Defects**: A single repair attempt presumption applies if the defect affects braking or steering and poses a danger.\n\n5. **Lease Protections**: Lessees have similar protections but are only entitled to a refund, not a replacement.\n\n6. **Resale Restrictions**: Vehicles returned as lemons cannot be resold in the state without meeting certain conditions, and some cannot be resold at all.\n\n7. **Informal Dispute Resolution**: Consumers must first use manufacturer-provided arbitration procedures before filing legal action, except when allowed otherwise.\n\nThese protections ensure defective vehicles are repaired, replaced, or refunded to protect consumers' interests.\n\n**References:**\n1. [325F.665 NEW MOTOR VEHICLE WARRANTIES; MANUFACTURER'S DUTY TO REPAIR, REFUND, OR REPLACE.](https://www.revisor.mn.gov/statutes/cite/325F.665)\n2. [168.022 MANDATORY TAX REFUND DUE TO LEMON LAW.](https://www.revisor.mn.gov/statutes/cite/168.022)\n3. [80F.18 CHOICE OF LAW AND JURISDICTION.](https://www.revisor.mn.gov/statutes/cite/80F.18)\n4. [216C.401 ELECTRIC VEHICLE REBATES.](https://www.revisor.mn.gov/statutes/cite/216C.401)\n5. [80G.06 SURETY BOND.](https://www.revisor.mn.gov/statutes/cite/80G.06)",
+    "expectedStatutes": [
+      "Minn. Stat. § 325F.665"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:46:06.254Z",
+    "category": "consumer_law"
+  },
+  {
+    "testId": "test_030",
+    "prompt": "Does Minnesota have a lemon law for defective vehicles?",
+    "response": "Yes, Minnesota has a lemon law for defective vehicles. Under statute 325F.665, if a new motor vehicle does not conform to applicable express warranties and cannot be repaired after a reasonable number of attempts, the manufacturer is required to either replace the vehicle or refund the purchase price.\n\n**References:**\n1. [325F.665 NEW MOTOR VEHICLE WARRANTIES; MANUFACTURER'S DUTY TO REPAIR, REFUND, OR REPLACE.](https://www.revisor.mn.gov/statutes/cite/325F.665)\n2. [80F.18 CHOICE OF LAW AND JURISDICTION.](https://www.revisor.mn.gov/statutes/cite/80F.18)\n3. [80G.06 SURETY BOND.](https://www.revisor.mn.gov/statutes/cite/80G.06)\n4. [297B.02 TAX IMPOSED.](https://www.revisor.mn.gov/statutes/cite/297B.02)\n5. [168D.03 COMPLIANCE WITH MINNESOTA LAWS.](https://www.revisor.mn.gov/statutes/cite/168D.03)",
+    "expectedStatutes": [
+      "Minn. Stat. § 325F.665"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 1,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:46:10.956Z",
+    "category": "consumer_law"
+  },
+  {
+    "testId": "test_031",
+    "prompt": "What are the rules for unemployment benefits in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [268.115 EXTENDED UNEMPLOYMENT BENEFITS.](https://www.revisor.mn.gov/statutes/cite/268.115)\n2. [268.145 INCOME TAX WITHHOLDING.](https://www.revisor.mn.gov/statutes/cite/268.145)\n3. [268.101 DETERMINATIONS ON ISSUES OF INELIGIBILITY.](https://www.revisor.mn.gov/statutes/cite/268.101)\n4. [268.192 PROTECTION OF RIGHTS.](https://www.revisor.mn.gov/statutes/cite/268.192)\n5. [268.031 STANDARD OF PROOF; STATUTORY INTERPRETATION AND APPLICATION.](https://www.revisor.mn.gov/statutes/cite/268.031)",
+    "expectedStatutes": [
+      "Minn. Stat. § 268.085",
+      "Minn. Stat. § 268.095"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:15.498Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_032",
+    "prompt": "How do I qualify for unemployment in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [268.115 EXTENDED UNEMPLOYMENT BENEFITS.](https://www.revisor.mn.gov/statutes/cite/268.115)\n2. [268.145 INCOME TAX WITHHOLDING.](https://www.revisor.mn.gov/statutes/cite/268.145)\n3. [268.101 DETERMINATIONS ON ISSUES OF INELIGIBILITY.](https://www.revisor.mn.gov/statutes/cite/268.101)\n4. [268.031 STANDARD OF PROOF; STATUTORY INTERPRETATION AND APPLICATION.](https://www.revisor.mn.gov/statutes/cite/268.031)\n5. [142G.12 ELIGIBILITY; MINNESOTA RESIDENCE.](https://www.revisor.mn.gov/statutes/cite/142G.12)",
+    "expectedStatutes": [
+      "Minn. Stat. § 268.085",
+      "Minn. Stat. § 268.095"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:20.462Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_033",
+    "prompt": "What are Minnesota's rules for non-compete agreements?",
+    "response": "In Minnesota, non-compete agreements in employment are generally void and unenforceable. However, there are exceptions:\n\n1. **Sale of a Business**: A non-compete is valid if agreed upon during the sale of a business, where the parties may agree on a temporary and geographically restricted covenant not to compete.\n\n2. **Dissolution of a Business**: A non-compete is valid if agreed upon in anticipation of a business dissolution, where parties can agree not to carry on a similar business in a specific area.\n\nNon-compete agreements do not include nondisclosure agreements or nonsolicitation agreements. Additionally, any provision requiring adjudication outside Minnesota or depriving the employee of Minnesota law's substantive protections is voidable by the employee. Violation could lead to the awarding of reasonable attorney fees to the employee.\n\n**References:**\n1. [181.988 COVENANTS NOT TO COMPETE VOID IN EMPLOYMENT AGREEMENTS; SUBSTANTIVE PROTECTIONS OF MINNESOTA LAW APPLY.](https://www.revisor.mn.gov/statutes/cite/181.988)\n2. [179A.23 LIMITATION ON CONTRACTING-OUT OF SERVICES PROVIDED BY MEMBERS OF A STATE OF MINNESOTA OR UNIVERSITY OF MINNESOTA BARGAINING UNIT.](https://www.revisor.mn.gov/statutes/cite/179A.23)\n3. [181.59 DISCRIMINATION ON ACCOUNT OF RACE, CREED, OR COLOR PROHIBITED IN CONTRACT.](https://www.revisor.mn.gov/statutes/cite/181.59)\n4. [176.1812 COLLECTIVE BARGAINING AGREEMENTS.](https://www.revisor.mn.gov/statutes/cite/176.1812)\n5. [176.041 EXCLUDED EMPLOYMENTS; APPLICATION, EXCEPTIONS, ELECTION OF COVERAGE.](https://www.revisor.mn.gov/statutes/cite/176.041)",
+    "expectedStatutes": [
+      "Minn. Stat. § 181.988"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:46:26.585Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_034",
+    "prompt": "Are non-compete clauses enforceable in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [181.988 COVENANTS NOT TO COMPETE VOID IN EMPLOYMENT AGREEMENTS; SUBSTANTIVE PROTECTIONS OF MINNESOTA LAW APPLY.](https://www.revisor.mn.gov/statutes/cite/181.988)\n2. [181.59 DISCRIMINATION ON ACCOUNT OF RACE, CREED, OR COLOR PROHIBITED IN CONTRACT.](https://www.revisor.mn.gov/statutes/cite/181.59)\n3. [179A.23 LIMITATION ON CONTRACTING-OUT OF SERVICES PROVIDED BY MEMBERS OF A STATE OF MINNESOTA OR UNIVERSITY OF MINNESOTA BARGAINING UNIT.](https://www.revisor.mn.gov/statutes/cite/179A.23)\n4. [268.192 PROTECTION OF RIGHTS.](https://www.revisor.mn.gov/statutes/cite/268.192)\n5. [179A.20 CONTRACTS.](https://www.revisor.mn.gov/statutes/cite/179A.20)",
+    "expectedStatutes": [
+      "Minn. Stat. § 181.988"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:31.614Z",
+    "category": "employment_law"
+  },
+  {
+    "testId": "test_035",
+    "prompt": "What are the penalties for domestic assault in Minnesota?",
+    "response": "Penalties for domestic assault in Minnesota vary depending on the nature and severity of the offense:\n\n1. **Misdemeanor Domestic Assault**:\n   - Committing an assault with intent to cause fear of immediate bodily harm or death, or intentionally inflicting or attempting to inflict bodily harm upon another, is a misdemeanor.\n\n2. **Gross Misdemeanor Domestic Assault**:\n   - If the offender has a previous qualified domestic violence-related offense conviction or adjudication within ten years, the offense is elevated to a gross misdemeanor.\n   - Penalty: Imprisonment for not more than 364 days, a fine of not more than $3,000, or both.\n\n3. **Felony Domestic Assault**:\n   - Violating the domestic assault statute within ten years of the first of any combination of two or more previous qualified domestic violence-related offense convictions or adjudications of delinquency.\n   - Penalty: Imprisonment for not more than five years, a fine of not more than $10,000, or both.\n\nAdditional Penalties:\n- Repeat offenders may face mandatory minimum jail time and be required to complete anger management therapy or counseling.\n- Violators may also face firearm possession prohibitions for up to three years or for life, depending on the circumstances of the offense. \n\nNote that courts may issue Domestic Abuse No Contact Orders, and violations of these orders also carry severe penalties, potentially resulting in misdemeanor, gross misdemeanor, or felony charges based on the violator’s history and conduct.\n\n**References:**\n1. [609.2243 SENTENCING; REPEAT DOMESTIC ASSAULT.](https://www.revisor.mn.gov/statutes/cite/609.2243)\n2. [609.2242 DOMESTIC ASSAULT.](https://www.revisor.mn.gov/statutes/cite/609.2242)\n3. [629.75 DOMESTIC ABUSE NO CONTACT ORDER.](https://www.revisor.mn.gov/statutes/cite/629.75)\n4. [609.224 ASSAULT IN THE FIFTH DEGREE.](https://www.revisor.mn.gov/statutes/cite/609.224)\n5. [609.221 ASSAULT IN THE FIRST DEGREE.](https://www.revisor.mn.gov/statutes/cite/609.221)",
+    "expectedStatutes": [
+      "Minn. Stat. § 609.2242"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 1,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:46:38.407Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_036",
+    "prompt": "What happens if I'm charged with domestic violence in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [629.75 DOMESTIC ABUSE NO CONTACT ORDER.](https://www.revisor.mn.gov/statutes/cite/629.75)\n2. [629.342 LAW ENFORCEMENT POLICIES; DOMESTIC ABUSE ARRESTS.](https://www.revisor.mn.gov/statutes/cite/629.342)\n3. [609.345 CRIMINAL SEXUAL CONDUCT IN THE FOURTH DEGREE.](https://www.revisor.mn.gov/statutes/cite/609.345)\n4. [609.2242 DOMESTIC ASSAULT.](https://www.revisor.mn.gov/statutes/cite/609.2242)\n5. [609.2243 SENTENCING; REPEAT DOMESTIC ASSAULT.](https://www.revisor.mn.gov/statutes/cite/609.2243)",
+    "expectedStatutes": [
+      "Minn. Stat. § 609.2242"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:44.310Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_037",
+    "prompt": "What are Minnesota's medical malpractice laws?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [147.001 SCOPE AND PURPOSE.](https://www.revisor.mn.gov/statutes/cite/147.001)\n2. [256B.121 TREBLE DAMAGES.](https://www.revisor.mn.gov/statutes/cite/256B.121)\n3. [147.381 APPLICATION OF INTERSTATE MEDICAL LICENSURE COMPACT TO EXISTING LAWS.](https://www.revisor.mn.gov/statutes/cite/147.381)\n4. [147.01 BOARD OF MEDICAL PRACTICE.](https://www.revisor.mn.gov/statutes/cite/147.01)\n5. [62J.25 MANDATORY MEDICARE ASSIGNMENT.](https://www.revisor.mn.gov/statutes/cite/62J.25)",
+    "expectedStatutes": [
+      "Minn. Stat. § 145.682",
+      "Minn. Stat. § 541.076"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:49.417Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_038",
+    "prompt": "Can I sue for medical malpractice in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [256B.121 TREBLE DAMAGES.](https://www.revisor.mn.gov/statutes/cite/256B.121)\n2. [3.751 CONTRACT CLAIMS.](https://www.revisor.mn.gov/statutes/cite/3.751)\n3. [115B.30 ELIGIBLE INJURY AND DAMAGE.](https://www.revisor.mn.gov/statutes/cite/115B.30)\n4. [332C.02 PROHIBITED PRACTICES.](https://www.revisor.mn.gov/statutes/cite/332C.02)\n5. [65B.54 CLAIMS PRACTICES.](https://www.revisor.mn.gov/statutes/cite/65B.54)",
+    "expectedStatutes": [
+      "Minn. Stat. § 145.682",
+      "Minn. Stat. § 541.076"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:54.104Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_039",
+    "prompt": "What are the requirements for probate in Minnesota?",
+    "response": "I'm not sure. No related statute was found in the database.\n\n**References:**\n1. [524.3-306 INFORMAL PROBATE; NOTICE REQUIREMENTS.](https://www.revisor.mn.gov/statutes/cite/524.3-306)\n2. [289A.10 FILING REQUIREMENTS FOR ESTATE TAX RETURNS.](https://www.revisor.mn.gov/statutes/cite/289A.10)\n3. [525.091 DESTRUCTION AND REPRODUCTION OF PROBATE RECORDS.](https://www.revisor.mn.gov/statutes/cite/525.091)\n4. [480.20 APPLICATION TO SUBSTITUTION OF PROBATE JUDGES.](https://www.revisor.mn.gov/statutes/cite/480.20)\n5. [524.2-201 DEFINITIONS.](https://www.revisor.mn.gov/statutes/cite/524.2-201)",
+    "expectedStatutes": [
+      "Minn. Stat. § 524.3-301",
+      "Minn. Stat. § 524.3-302"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:46:59.394Z",
+    "category": "estate_law"
+  },
+  {
+    "testId": "test_040",
+    "prompt": "How does probate work in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [524.3-306 INFORMAL PROBATE; NOTICE REQUIREMENTS.](https://www.revisor.mn.gov/statutes/cite/524.3-306)\n2. [525.091 DESTRUCTION AND REPRODUCTION OF PROBATE RECORDS.](https://www.revisor.mn.gov/statutes/cite/525.091)\n3. [524.2-711 FUTURE INTERESTS IN \"HEIRS,\" \"HEIRS AT LAW,\" OR \"NEXT OF KIN.\"](https://www.revisor.mn.gov/statutes/cite/524.2-711)\n4. [519A.03 DISPOSITION UPON DEATH.](https://www.revisor.mn.gov/statutes/cite/519A.03)\n5. [480.20 APPLICATION TO SUBSTITUTION OF PROBATE JUDGES.](https://www.revisor.mn.gov/statutes/cite/480.20)",
+    "expectedStatutes": [
+      "Minn. Stat. § 524.3-301",
+      "Minn. Stat. § 524.3-302"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:04.110Z",
+    "category": "estate_law"
+  },
+  {
+    "testId": "test_041",
+    "prompt": "What are Minnesota's data privacy laws?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [325M.10 CITATION.](https://www.revisor.mn.gov/statutes/cite/325M.10)\n2. [214.25 DATA PRIVACY.](https://www.revisor.mn.gov/statutes/cite/214.25)\n3. [13.01 GOVERNMENT DATA.](https://www.revisor.mn.gov/statutes/cite/13.01)\n4. [268B.30 DATA PRIVACY.](https://www.revisor.mn.gov/statutes/cite/268B.30)\n5. [62V.06 DATA PRACTICES.](https://www.revisor.mn.gov/statutes/cite/62V.06)",
+    "expectedStatutes": [
+      "Minn. Stat. § 13.01",
+      "Minn. Stat. § 325M.01"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:08.985Z",
+    "category": "privacy_law"
+  },
+  {
+    "testId": "test_042",
+    "prompt": "What privacy protections do Minnesota residents have?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [268B.30 DATA PRIVACY.](https://www.revisor.mn.gov/statutes/cite/268B.30)\n2. [198.33 PRIVACY OF RESIDENTS; SEARCH AND SEIZURE LIMITED TO CRIMINAL WARRANT.](https://www.revisor.mn.gov/statutes/cite/198.33)\n3. [62V.06 DATA PRACTICES.](https://www.revisor.mn.gov/statutes/cite/62V.06)\n4. [214.25 DATA PRIVACY.](https://www.revisor.mn.gov/statutes/cite/214.25)\n5. [268.19 DATA PRIVACY.](https://www.revisor.mn.gov/statutes/cite/268.19)",
+    "expectedStatutes": [
+      "Minn. Stat. § 13.01",
+      "Minn. Stat. § 325M.01"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0,
+    "timestamp": "2025-11-27T17:47:13.558Z",
+    "category": "privacy_law"
+  },
+  {
+    "testId": "test_043",
+    "prompt": "What are the rules for divorce in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [517.08 APPLICATION FOR LICENSE.](https://www.revisor.mn.gov/statutes/cite/517.08)\n2. [518.195 SUMMARY DISSOLUTION PROCESS.](https://www.revisor.mn.gov/statutes/cite/518.195)\n3. [519A.03 DISPOSITION UPON DEATH.](https://www.revisor.mn.gov/statutes/cite/519A.03)\n4. [517.04 PERSONS AUTHORIZED TO PERFORM CIVIL MARRIAGES.](https://www.revisor.mn.gov/statutes/cite/517.04)\n5. [517.07 LICENSE.](https://www.revisor.mn.gov/statutes/cite/517.07)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518.06",
+      "Minn. Stat. § 518.10"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:18.469Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_044",
+    "prompt": "How do I file for divorce in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [517.08 APPLICATION FOR LICENSE.](https://www.revisor.mn.gov/statutes/cite/517.08)\n2. [517.07 LICENSE.](https://www.revisor.mn.gov/statutes/cite/517.07)\n3. [517.04 PERSONS AUTHORIZED TO PERFORM CIVIL MARRIAGES.](https://www.revisor.mn.gov/statutes/cite/517.04)\n4. [518.195 SUMMARY DISSOLUTION PROCESS.](https://www.revisor.mn.gov/statutes/cite/518.195)\n5. [590.02 PETITION; FILING; SERVICE; COSTS.](https://www.revisor.mn.gov/statutes/cite/590.02)",
+    "expectedStatutes": [
+      "Minn. Stat. § 518.06",
+      "Minn. Stat. § 518.10"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:23.270Z",
+    "category": "family_law"
+  },
+  {
+    "testId": "test_045",
+    "prompt": "What are Minnesota's gun laws?",
+    "response": "Minnesota's gun laws cover various aspects, including the ownership, possession, and transportation of firearms. Here are key points based on the provided statutes:\n\n1. **Machine Guns and Short-Barreled Shotguns (Sec. 609.67):**\n   - Definition and regulation of machine guns, short-barreled shotguns, trigger activators, and machine gun conversion kits.\n   - Restrictions on ownership, possession, or operation, with specific exceptions for law enforcement, military personnel, manufacturers, and certain collectors.\n   - Violations can result in severe penalties, including imprisonment and fines.\n\n2. **Federal Gun Laws Application (Sec. 624.71):**\n   - Federally licensed firearm transactions are lawful if they comply with the federal Gun Control Act of 1968.\n   - Minnesota residents may purchase firearms and ammunition in other states if it aligns with federal law.\n\n3. **Transporting Firearms (Sec. 97B.045):**\n   - Firearms must be unloaded and either in a secure case or in the vehicle's trunk.\n   - Exceptions exist for specific activities such as hunting or attending shooting ranges, with additional restrictions in certain counties and areas.\n\n4. **Persons Prohibited from Possessing Firearms (Sec. 624.713):**\n   - Certain groups are prohibited from possessing firearms or ammunition, including minors, individuals with a criminal background, those committed for mental health reasons, and others under specific legal disabilities.\n   - Violations can lead to serious criminal charges.\n\n5. **Public Shooting Range Accessibility (Sec. 87A.09):**\n   - Publicly funded shooting ranges must be accessible for youth firearms safety courses during certain times of the year.\n\nEach law may have specific exceptions, conditions, or additional requirements. For detailed situations, checking the full legal text or consulting a legal expert is recommended.\n\n**References:**\n1. [609.67 MACHINE GUNS AND SHORT-BARRELED SHOTGUNS.](https://www.revisor.mn.gov/statutes/cite/609.67)\n2. [624.71 GUN CONTROL; APPLICATION OF FEDERAL LAW.](https://www.revisor.mn.gov/statutes/cite/624.71)\n3. [97B.045 TRANSPORTING FIREARMS.](https://www.revisor.mn.gov/statutes/cite/97B.045)\n4. [624.713 CERTAIN PERSONS NOT TO POSSESS FIREARMS.](https://www.revisor.mn.gov/statutes/cite/624.713)\n5. [87A.09 PUBLIC SHOOTING RANGES; ACCESSIBILITY.](https://www.revisor.mn.gov/statutes/cite/87A.09)",
+    "expectedStatutes": [
+      "Minn. Stat. § 624.712",
+      "Minn. Stat. § 624.714"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:47:32.745Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_046",
+    "prompt": "What do I need to carry a firearm in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [97B.045 TRANSPORTING FIREARMS.](https://www.revisor.mn.gov/statutes/cite/97B.045)\n2. [97B.015 FIREARMS SAFETY AND WILDLIFE IDENTIFICATION COURSE.](https://www.revisor.mn.gov/statutes/cite/97B.015)\n3. [326.3361 TRAINING.](https://www.revisor.mn.gov/statutes/cite/326.3361)\n4. [609.67 MACHINE GUNS AND SHORT-BARRELED SHOTGUNS.](https://www.revisor.mn.gov/statutes/cite/609.67)\n5. [624.71 GUN CONTROL; APPLICATION OF FEDERAL LAW.](https://www.revisor.mn.gov/statutes/cite/624.71)",
+    "expectedStatutes": [
+      "Minn. Stat. § 624.712",
+      "Minn. Stat. § 624.714"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:37.642Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_047",
+    "prompt": "What are the penalties for drug possession in Minnesota?",
+    "response": "I'm not sure. No related statute was found in the database.\n\n**References:**\n1. [152.021 CONTROLLED SUBSTANCE CRIME IN THE FIRST DEGREE.](https://www.revisor.mn.gov/statutes/cite/152.021)\n2. [342.09 PERSONAL ADULT USE OF CANNABIS.](https://www.revisor.mn.gov/statutes/cite/342.09)\n3. [152.33 VIOLATIONS.](https://www.revisor.mn.gov/statutes/cite/152.33)\n4. [152.18 DISCHARGE AND DISMISSAL.](https://www.revisor.mn.gov/statutes/cite/152.18)\n5. [152.0263 CANNABIS POSSESSION CRIMES.](https://www.revisor.mn.gov/statutes/cite/152.0263)",
+    "expectedStatutes": [
+      "Minn. Stat. § 152.024",
+      "Minn. Stat. § 152.025"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:42.471Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_048",
+    "prompt": "What happens if I'm caught with drugs in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [256D.024 PERSONS PROHIBITED FROM RECEIVING BENEFITS.](https://www.revisor.mn.gov/statutes/cite/256D.024)\n2. [152.0261 IMPORTING CONTROLLED SUBSTANCES ACROSS STATE BORDERS.](https://www.revisor.mn.gov/statutes/cite/152.0261)\n3. [152.33 VIOLATIONS.](https://www.revisor.mn.gov/statutes/cite/152.33)\n4. [152.021 CONTROLLED SUBSTANCE CRIME IN THE FIRST DEGREE.](https://www.revisor.mn.gov/statutes/cite/152.021)\n5. [145.698 CONFINEMENT OF DRUG DEPENDENT PERSON.](https://www.revisor.mn.gov/statutes/cite/145.698)",
+    "expectedStatutes": [
+      "Minn. Stat. § 152.024",
+      "Minn. Stat. § 152.025"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:47.522Z",
+    "category": "criminal_law"
+  },
+  {
+    "testId": "test_049",
+    "prompt": "What are Minnesota's dog bite laws?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [347.34 LICENSES REQUIRED.](https://www.revisor.mn.gov/statutes/cite/347.34)\n2. [346.155 POSSESSING REGULATED ANIMALS.](https://www.revisor.mn.gov/statutes/cite/346.155)\n3. [346.55 CIVIL LIABILITY.](https://www.revisor.mn.gov/statutes/cite/346.55)\n4. [347.40 EXCEPTIONS.](https://www.revisor.mn.gov/statutes/cite/347.40)\n5. [346.58 DOGS AND CATS; BEST MANAGEMENT STANDARDS FOR CARE BY DEALERS, COMMERCIAL BREEDERS, AND BROKERS.](https://www.revisor.mn.gov/statutes/cite/346.58)",
+    "expectedStatutes": [
+      "Minn. Stat. § 347.22"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:47:52.431Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_050",
+    "prompt": "Am I liable if my dog bites someone in Minnesota?",
+    "response": "Yes, you could be liable if your dog bites someone in Minnesota. According to section 347.22, if a dog, without provocation, attacks or injures a person who is lawfully in a place, the dog's owner is liable for damages to the person attacked. The liability covers the full amount of the injury sustained.\n\n**References:**\n1. [346.55 CIVIL LIABILITY.](https://www.revisor.mn.gov/statutes/cite/346.55)\n2. [347.22 DAMAGES, OWNER LIABLE.](https://www.revisor.mn.gov/statutes/cite/347.22)\n3. [609.226 HARM CAUSED BY DOG.](https://www.revisor.mn.gov/statutes/cite/609.226)\n4. [347.01 OWNER'S LIABILITY; PENALTY.](https://www.revisor.mn.gov/statutes/cite/347.01)\n5. [360.92 LIABILITY INSURANCE REQUIRED; MISDEMEANOR.](https://www.revisor.mn.gov/statutes/cite/360.92)",
+    "expectedStatutes": [
+      "Minn. Stat. § 347.22"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 1,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:47:57.169Z",
+    "category": "civil_law"
+  },
+  {
+    "testId": "test_051",
+    "prompt": "What are the business registration requirements in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [270C.101 APPLICATION FOR BUSINESS REGISTRATION; CERTAIN INFORMATION NOT REQUIRED.](https://www.revisor.mn.gov/statutes/cite/270C.101)\n2. [116S.05 REGISTERED NAME.](https://www.revisor.mn.gov/statutes/cite/116S.05)\n3. [325M.17 REQUIREMENTS FOR SMALL BUSINESSES.](https://www.revisor.mn.gov/statutes/cite/325M.17)\n4. [150A.25 REGISTRATION FOR DENTAL LABORATORIES.](https://www.revisor.mn.gov/statutes/cite/150A.25)\n5. [58B.051 REGISTRATION FOR LENDERS.](https://www.revisor.mn.gov/statutes/cite/58B.051)",
+    "expectedStatutes": [
+      "Minn. Stat. § 333.001"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:48:02.034Z",
+    "category": "business_law"
+  },
+  {
+    "testId": "test_052",
+    "prompt": "How do I register a business name in MN?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [116S.05 REGISTERED NAME.](https://www.revisor.mn.gov/statutes/cite/116S.05)\n2. [270C.101 APPLICATION FOR BUSINESS REGISTRATION; CERTAIN INFORMATION NOT REQUIRED.](https://www.revisor.mn.gov/statutes/cite/270C.101)\n3. [5.36 REGISTERED AGENT FOR SERVICE OF PROCESS.](https://www.revisor.mn.gov/statutes/cite/5.36)\n4. [136A.63 REGISTRATION.](https://www.revisor.mn.gov/statutes/cite/136A.63)\n5. [150A.25 REGISTRATION FOR DENTAL LABORATORIES.](https://www.revisor.mn.gov/statutes/cite/150A.25)",
+    "expectedStatutes": [
+      "Minn. Stat. § 333.001"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:48:06.729Z",
+    "category": "business_law"
+  },
+  {
+    "testId": "test_053",
+    "prompt": "What are Minnesota's consumer fraud protections?",
+    "response": "Minnesota's consumer fraud protections involve several measures:\n\n1. **Telemarketing Fraud Education**: The Attorney General is tasked with establishing an outreach advocacy network to educate citizens about telemarketing fraud through clinics, seminars, and informational materials (325G.52).\n\n2. **Unlawful Trade Practices**: Minnesota prohibits trade practices that mislead consumers about pricing, quality, ingredients, or origin of merchandise. These practices are deemed unfair, fraudulent, and injurious to consumers and workers (325D.09).\n\n3. **Legal Remedies and Enforcement**: Consumers injured by certain fraudulent practices can initiate civil actions for damages, costs, and attorney fees. The Attorney General or county attorneys can seek injunctions against violations (325F.70).\n\n4. **Commerce Fraud Bureau**: This bureau investigates and prosecutes insurance-related and financial crimes, working with local law enforcement as needed (45.0135).\n\nThese statutes collectively help safeguard consumers from fraud and ensure avenues for education and legal recourse are available.\n\n**References:**\n1. [325G.52 CONSUMER EDUCATION; TELEMARKETING FRAUD.](https://www.revisor.mn.gov/statutes/cite/325G.52)\n2. [325D.09 UNLAWFUL TRADE PRACTICES.](https://www.revisor.mn.gov/statutes/cite/325D.09)\n3. [325F.70 REMEDIES.](https://www.revisor.mn.gov/statutes/cite/325F.70)\n4. [325M.10 CITATION.](https://www.revisor.mn.gov/statutes/cite/325M.10)\n5. [45.0135 COMMERCE FRAUD BUREAU.](https://www.revisor.mn.gov/statutes/cite/45.0135)",
+    "expectedStatutes": [
+      "Minn. Stat. § 325F.69"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:48:13.521Z",
+    "category": "consumer_law"
+  },
+  {
+    "testId": "test_054",
+    "prompt": "Can I sue for deceptive business practices in Minnesota?",
+    "response": "No, you cannot bring a private action for deceptive business practices under section 325E.42 regarding gambling advertising—such actions can only be brought by the attorney general. However, under section 325F.70, a consumer can bring a civil action for violations of sections 325F.68 to 325F.70 related to the sale of merchandise for personal, family, household, or agricultural purposes.\n\n**References:**\n1. [325E.42 DECEPTIVE TRADE PRACTICES; GAMBLING ADVERTISING AND MARKETING CLAIMS.](https://www.revisor.mn.gov/statutes/cite/325E.42)\n2. [216D.09 INJUNCTIVE RELIEF.](https://www.revisor.mn.gov/statutes/cite/216D.09)\n3. [325D.09 UNLAWFUL TRADE PRACTICES.](https://www.revisor.mn.gov/statutes/cite/325D.09)\n4. [325D.67 PETROLEUM.](https://www.revisor.mn.gov/statutes/cite/325D.67)\n5. [325F.70 REMEDIES.](https://www.revisor.mn.gov/statutes/cite/325F.70)",
+    "expectedStatutes": [
+      "Minn. Stat. § 325F.69"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0.5,
+    "hallucinationScore": 1,
+    "relevanceScore": 1,
+    "timestamp": "2025-11-27T17:48:18.229Z",
+    "category": "consumer_law"
+  },
+  {
+    "testId": "test_055",
+    "prompt": "What are the requirements for a mechanic's lien in Minnesota?",
+    "response": "I’m not sure. No related statute was found in the database.\n\n**References:**\n1. [518A.67 MOTOR VEHICLE LIEN.](https://www.revisor.mn.gov/statutes/cite/518A.67)\n2. [514.011 NOTICE.](https://www.revisor.mn.gov/statutes/cite/514.011)\n3. [514.99 NONCONSENSUAL COMMON LAW LIENS.](https://www.revisor.mn.gov/statutes/cite/514.99)\n4. [270C.63 LIEN FOR TAXES.](https://www.revisor.mn.gov/statutes/cite/270C.63)\n5. [514.661 LIEN FOR RENTAL VALUE OF FARM MACHINERY DURING MEDIATION.](https://www.revisor.mn.gov/statutes/cite/514.661)",
+    "expectedStatutes": [
+      "Minn. Stat. § 514.08"
+    ],
+    "isDuplicate": false,
+    "statuteAccuracyScore": 0,
+    "hallucinationScore": 1,
+    "relevanceScore": 0.5,
+    "timestamp": "2025-11-27T17:48:23.040Z",
+    "category": "property_law"
+  }
+]
+
