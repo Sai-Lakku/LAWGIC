@@ -26,7 +26,7 @@ export const vectorStore = new MongoDBAtlasVectorSearch(embeddings, {
 });
 
 export const retriever = vectorStore.asRetriever({
-  k: 5,
+  k: 20,
 });
 
 export async function buildMemoryRetriever(k = 5) {

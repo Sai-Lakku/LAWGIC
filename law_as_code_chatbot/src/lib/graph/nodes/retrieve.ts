@@ -32,30 +32,32 @@
 
 // law_as_code_chatbot/src/lib/graph/nodes/retrieve.ts
 import { InputStateAnnotation } from "../state";
-import connectDB from "../../databse_user/db"; // 导入你的数据库连接
-import { OpenAIEmbeddings } from "@langchain/openai";
+import connectDB from "../../databse_user/db";
+import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
+// Note: We removed SystemMessage and HumanMessage imports as we are using plain objects now
 
-// 定义返回引用的类型
+// Define the type for the returned references
 type RefItem = { title: string; url?: string | null; cite?: string | null };
 
 /**
- * RRF (Reciprocal Rank Fusion) 融合算法
- * 作用：合并两个列表，如果一个文档在两边都排名靠前，它的分数会暴涨。
+ * RRF (Reciprocal Rank Fusion) Algorithm
+ * Purpose: Merges two lists of results. If a document appears high in both lists,
+ * its score is significantly boosted.
  */
 function performRRF(listA: any[], listB: any[], k = 60) {
   const fusedScores = new Map<string, any>();
 
-  // 处理列表 A (向量搜索结果)
+  // Process List A (Vector Search Results)
   listA.forEach((doc, rank) => {
     const id = doc._id.toString();
     if (!fusedScores.has(id)) {
       fusedScores.set(id, { doc, score: 0 });
     }
-    // RRF 公式: 1 / (k + rank)
+    // RRF Formula: 1 / (k + rank)
     fusedScores.get(id).score += 1 / (k + rank + 1);
   });
 
-  // 处理列表 B (关键字搜索结果)
+  // Process List B (Keyword Search Results)
   listB.forEach((doc, rank) => {
     const id = doc._id.toString();
     if (!fusedScores.has(id)) {
@@ -64,7 +66,7 @@ function performRRF(listA: any[], listB: any[], k = 60) {
     fusedScores.get(id).score += 1 / (k + rank + 1);
   });
 
-  // 将 Map 转回数组并按分数倒序排列
+  // Convert Map back to array and sort by score descending
   const sortedResults = Array.from(fusedScores.values())
     .sort((a, b) => b.score - a.score)
     .map((item) => item.doc);
@@ -74,32 +76,63 @@ function performRRF(listA: any[], listB: any[], k = 60) {
 
 export async function retrieve(state: typeof InputStateAnnotation.State) {
   console.log(`🚀 Starting Hybrid Search for: "${state.question}"`);
-  
-  // 1. 获取数据库连接
+
+  // --- Step 0: Query Expansion (The "Translator") ---
+  // We use a fast/cheap LLM to convert the user's question into better search keywords.
+  const llm = new ChatOpenAI({
+    modelName: "gpt-4o-mini",
+    temperature: 0,
+  });
+
+  // FIX: Using plain objects instead of SystemMessage classes to avoid TypeScript errors
+  const expansionResponse = await llm.invoke([
+    {
+      role: "system",
+      content: `You are a legal search query optimizer for Minnesota Statutes. 
+      Your task is to convert the user's natural language question into a keyword-rich search query.
+      
+      Instructions:
+      1. Replace slang with proper legal terminology (e.g., "weed" -> "cannabis", "caught" -> "arrested charged").
+      2. Add relevant legal concepts or statute keywords (e.g., "custody" -> "custody parenting time dissolution").
+      3. Do NOT answer the question. Only output the optimized search string.`
+    },
+    {
+      role: "user",
+      content: state.question
+    }
+  ]);
+
+  const refinedQuery = expansionResponse.content as string;
+  console.log(`🔀 Query Expanded: "${state.question}" -> "${refinedQuery}"`);
+  // --- End Step 0 ---
+
+  // 1. Connect to Database
   const mongoose = await connectDB();
   const db = mongoose.connection.db;
   if (!db) throw new Error("Database connection failed");
   
-  // ⚠️ 确认你的 Collection 名字是 "upgrade_laws" (根据你之前的截图)
+  // Confirmed collection name based on your previous screenshots
   const collection = db.collection("upgrade_laws"); 
 
-  // 2. 生成问题的 Embedding (用于向量搜索)
+  // 2. Generate Embedding for the ORIGINAL question
+  // We use the original question for Vector Search to capture the user's original semantic intent.
   const embeddings = new OpenAIEmbeddings({
-    modelName: "text-embedding-3-small", // 确保和你存入数据库时用的模型一致
+    modelName: "text-embedding-3-small",
   });
   const queryVector = await embeddings.embedQuery(state.question);
 
-  // 3. 并行执行：向量搜索 + 关键字搜索
+  // 3. Execute Parallel Searches: Vector (Semantic) + Keyword (Exact Match)
   const [vectorResults, keywordResults] = await Promise.all([
-    // A. 向量搜索 (语义)
+    // A. Vector Search (Semantic Understanding)
+    // Uses the original user question
     collection.aggregate([
       {
         "$vectorSearch": {
-          "index": "test_retrieval_vector_index", // 你的 Index 名字
+          "index": "test_retrieval_vector_index", // Your Vector Index Name
           "path": "embedding",
           "queryVector": queryVector,
-          "numCandidates": 100, // 也就是 k
-          "limit": 50 // 取前 50 个用于融合
+          "numCandidates": 100,
+          "limit": 50 
         }
       },
       {
@@ -108,24 +141,25 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
           title: 1,
           content: 1,
           url: 1,
-          id: 1, // 这里的 id 是 statutes id (e.g. 514.08)
+          id: 1,
           score: { $meta: "vectorSearchScore" }
         }
       }
     ]).toArray(),
 
-    // B. 关键字搜索 (精确匹配 - 解决 Accuracy 低的核心)
+    // B. Keyword Search (Precision Match)
+    // Uses the EXPANDED/REFINED query to catch specific legal terms
     collection.aggregate([
       {
         "$search": {
-          "index": "test_retrieval_atlas_index", // 必须确保 Index 配置里包含文本字段的 mapping
+          "index": "test_retrieval_atlas_search", // Your Atlas Search Index Name
           "text": {
-            "query": state.question,
-            "path": ["content", "title", "id"] // 在这三个字段里搜关键词
+            "query": refinedQuery, // Using the LLM-optimized keywords here
+            "path": ["content", "title", "id"] // Search in these fields
           }
         }
       },
-      { "$limit": 50 }, // 取前 50 个用于融合
+      { "$limit": 50 }, 
       {
         "$project": {
           _id: 1,
@@ -141,14 +175,15 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
 
   console.log(`📊 Stats: Vector found ${vectorResults.length}, Keyword found ${keywordResults.length}`);
 
-  // 4. 执行 RRF 融合
-  // 这会把两边的结果合并，取重合度最高的排在最前面
+  // 4. Perform RRF Fusion
+  // Merge the two lists, prioritizing documents that appear in both.
   const fusedResults = performRRF(vectorResults, keywordResults);
 
-  // 5. 只取最终的前 10 个给 LLM
-  const finalDocs = fusedResults.slice(0, 10);
+  // 5. Slice Top Results for Context
+  // Increased to 25 to provide more context window to the LLM
+  const finalDocs = fusedResults.slice(0, 25);
 
-  // 6. 格式化返回给 Graph (保持和你原有格式兼容)
+  // 6. Format Output
   const context = finalDocs.map((d: any) => d.content ?? "").join("\n\n");
 
   const references: RefItem[] = finalDocs.map((d: any) => ({
@@ -159,7 +194,7 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
 
   console.log(`✅ Final Hybrid Reranked Result Count: ${finalDocs.length}`);
   
-  // (可选) 打印第一名的标题，看看是不是我们要找的法条
+  // Debug: Log the top result to verify relevance
   if (finalDocs.length > 0) {
     console.log(`🥇 Top Result: ${finalDocs[0].id} - ${finalDocs[0].title}`);
   }
