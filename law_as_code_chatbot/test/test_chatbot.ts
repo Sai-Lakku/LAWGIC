@@ -1,6 +1,4 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
-
 import OpenAI from 'openai';
 import { Langfuse } from 'langfuse';
 import * as fs from 'fs';
@@ -12,6 +10,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -19,7 +19,7 @@ const openai = new OpenAI({
 const langfuse = new Langfuse({
   secretKey: process.env.LANGFUSE_SECRET_KEY,
   publicKey: process.env.LANGFUSE_PUBLIC_KEY,
-  baseUrl: process.env.LANGFUSE_BASE_URL || 'https://cloud.langfuse.com',
+  baseUrl: process.env.LANGFUSE_HOST || process.env.LANGFUSE_BASE_URL || 'https://cloud.langfuse.com',
 });
 
 const CHATBOT_API_URL = process.env.CHATBOT_API_URL || 'http://localhost:3000/api/chat';
