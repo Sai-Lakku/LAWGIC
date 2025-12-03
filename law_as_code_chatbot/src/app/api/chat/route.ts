@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
     // Add for changing reference
     const cleanContext = context
-      .replace(/References?:[\s\S]*$/gi, "")  // 去掉末尾的 "References:" 块
+      .replace(/References?:[\s\S]*$/gi, "")  // "References:"
       .trim();
 
     (async () => {
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
           await new Promise(r => setTimeout(r, 0));
         }
       } catch (err) {
-        await writer.write(encoder.encode("⚠️ Streaming error"));
+        await writer.write(encoder.encode(" Streaming error"));
         await trace.update({
           output: null,
           metadata: { error: String(err), status: "error" }
@@ -65,7 +65,7 @@ export async function POST(req: Request) {
           new Map(references.map(r => [r.url, r])).values()
         );
 
-        if (references && references.length > 0) {
+        if (uniqueReferences.length > 0) {
           const referencesBlock =
             "\n\n**References:**\n" +
             uniqueReferences
@@ -79,7 +79,7 @@ export async function POST(req: Request) {
         await trace.update({ output: "stream finished" });
 
         await langfuse.flushAsync();
-        console.log("✅ Langfuse flushed");
+        console.log(" Langfuse flushed");
       }
     })();
 

@@ -23,19 +23,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Missing query" }, { status: 400 });
   }
 
-  // 1️⃣ Create embedding for the user query
+  // 1️ Create embedding for the user query
   const embeddingRes = await openai.embeddings.create({
     model: "text-embedding-3-small",
     input: query,
   });
   const queryEmbedding = embeddingRes.data[0].embedding;
 
-  // 2️⃣ Connect to MongoDB
+  // 2️ Connect to MongoDB
   await client.connect();
   const db = client.db("LAWGIC-DB");
   const collection = db.collection("laws");
 
-  // 3️⃣ Perform vector search
+  // 3️ Perform vector search
   const results = await collection.aggregate([
     {
       $vectorSearch: {
@@ -57,6 +57,6 @@ export async function POST(req: Request) {
     },
   ]).toArray();
 
-  // 4️⃣ Return top results
+  // 4️ Return top results
   return NextResponse.json({ results });
 }
