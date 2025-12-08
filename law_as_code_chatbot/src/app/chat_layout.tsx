@@ -1,23 +1,32 @@
 "use client";
+// law_as_code_chatbot/src/app/chat_layout.tsx
 
-import { Search, Book, Scale, MessageSquare, Plus, ChevronDown, ChevronRight, Filter, Copy, ThumbsUp, ThumbsDown, Send, RefreshCw } from 'lucide-react';
+import { 
+  MessageSquare, Plus, Copy, ThumbsUp, ThumbsDown, 
+  Send, RefreshCw, Loader2, Calendar, Menu, X, MoreHorizontal, Pin, Trash2, Edit2, Scale 
+} from 'lucide-react';
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useParams, useRouter } from "next/navigation";
 
-// Import the Authentication Component (Make sure this file exists in src/components/)
 import { AuthSidebarItem } from "@/components/AuthSidebarItem";
+
+// --- Components ---
 
 function MessageTimestamp({ timestamp }: { timestamp?: string }) {
   const [clientTime, setClientTime] = useState<string | null>(null);
 
   useEffect(() => {
-    // Use the provided timestamp if it exists; otherwise generate once on mount
     setClientTime(timestamp || new Date().toLocaleTimeString());
   }, [timestamp]);
 
   return <>{clientTime}</>;
 }
+
+// --- Interfaces ---
 
 interface Message {
   id: number;
@@ -27,13 +36,11 @@ interface Message {
   confidence?: number;
 }
 
-interface ChatHistoryItem {
-  id: string;
+interface ChatSessionItem {
+  _id: string;
   title: string;
-  preview: string;
-  date: string;
-  messageCount: number;
-  category: string;
+  updatedAt: string;
+  isPinned?: boolean;
 }
 
 interface LayoutProps {
@@ -41,9 +48,11 @@ interface LayoutProps {
   inputValue: string;
   setInputValue: (val: string) => void;
   onSendMessage: () => void;
-  onKeyPress: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onKeyPress: (e: React.KeyboardEvent) => void;
   isLoading: boolean;
 }
+
+// --- Main Component ---
 
 export default function Layout({
   messages,
@@ -53,195 +62,358 @@ export default function Layout({
   onKeyPress,
   isLoading,
 }: LayoutProps) {
-  const [leftSidebarExpanded, setLeftSidebarExpanded] = useState(true);
-  const [recentExpanded, setRecentExpanded] = useState(true);
-  const [categoriesExpanded, setCategoriesExpanded] = useState(true);
+  const { data: session } = useSession();
+  const params = useParams();
+  const currentChatId = params?.id as string;
+  const router = useRouter();
 
-  // Mock data for chat history
-  const chatHistory: ChatHistoryItem[] = [
-    {
-      id: '1',
-      title: 'Securities law compliance query',
-      preview: 'What are the requirements for...',
-      date: '1/15/2024',
-      messageCount: 8,
-      category: 'Securities Law'
-    },
-    {
-      id: '2',
-      title: 'Tax code interpretation',
-      preview: 'Section 1031 like-kind exchanges...',
-      date: '1/14/2024',
-      messageCount: 12,
-      category: 'Tax Law'
-    },
-    {
-      id: '3',
-      title: 'Civil rights violation assessment',
-      preview: 'Employment discrimination under...',
-      date: '1/14/2024',
-      messageCount: 6,
-      category: 'Civil Rights'
-    },
-    {
-      id: '4',
-      title: 'Contract law analysis',
-      preview: 'Breach of contract remedies...',
-      date: '1/13/2024',
-      messageCount: 15,
-      category: 'Contract Law'
-    },
-    {
-      id: '5',
-      title: 'Criminal procedure question',
-      preview: 'Fourth Amendment search and...',
-      date: '1/12/2024',
-      messageCount: 9,
-      category: 'Criminal Law'
+  // State
+  const [history, setHistory] = useState<ChatSessionItem[]>([]);
+  const [isHistoryLoading, setIsHistoryLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Menu & Edit State
+  const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [editingChatId, setEditingChatId] = useState<string | null>(null);
+  const [editTitle, setEditTitle] = useState("");
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // If clicking inside a menu or a button, don't close immediately (handled by button logic)
+      if ((event.target as HTMLElement).closest('.chat-menu-trigger')) return;
+      setActiveMenuId(null);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  // Fetch History
+  useEffect(() => {
+    if (session?.user) {
+      setIsHistoryLoading(true);
+      fetch("/api/history")
+        .then((res) => {
+          if (res.ok) return res.json();
+          throw new Error("Failed to fetch history");
+        })
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setHistory(data);
+          }
+        })
+        .catch((err) => console.error("Error loading history:", err))
+        .finally(() => setIsHistoryLoading(false));
     }
-  ];
+  }, [session, currentChatId]);
 
-  const lawCategories = [
-    'Securities Law',
-    'Tax Law', 
-    'Civil Rights',
-    'Contract Law',
-    'Criminal Law'
-  ];
+  // --- Helper: Trigger Analysis (Fire and Forget) ---
+  const triggerAnalysis = async (chatId: string) => {
+    // We use a non-blocking fetch call to analyze the chat when the user leaves it.
+    // This updates the chat summary and user persona in the background.
+    try {
+      fetch("/api/analyze", {
+        method: "POST",
+        body: JSON.stringify({ chatId }),
+        headers: { "Content-Type": "application/json" }
+      });
+      // We don't await response because we don't want to block navigation
+    } catch (e) {
+      console.error("Background analysis failed", e);
+    }
+  };
 
-  const recentStatutes = [
-    'Securities Exchange Act',
-    'Internal Revenue Code',
-    'Civil Rights Act'
-  ];
+  // --- Actions ---
+
+  // Handle Card Click (Navigation)
+  const handleChatClick = (chatId: string) => {
+    if (editingChatId === chatId) return; // Don't navigate if editing
+    
+    // 🔥 Trigger analysis for the OLD chat before leaving
+    if (currentChatId && currentChatId !== chatId) {
+      triggerAnalysis(currentChatId);
+    }
+
+    router.push(`/chat/${chatId}`);
+    setIsMobileMenuOpen(false);
+  };
+
+  // Handle New Chat Click
+  const handleNewChatClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // 🔥 Trigger analysis for the OLD chat before leaving
+    if (currentChatId) {
+      triggerAnalysis(currentChatId);
+    }
+    
+    router.push("/");
+  };
+
+  const handlePin = async (e: React.MouseEvent, chat: ChatSessionItem) => {
+    e.preventDefault();
+    e.stopPropagation(); // Stop event bubbling
+    
+    // Optimistic Update
+    const newPinnedStatus = !chat.isPinned;
+    setHistory(prev => 
+      prev.map(c => c._id === chat._id ? { ...c, isPinned: newPinnedStatus } : c)
+          .sort((a, b) => Number(b.isPinned) - Number(a.isPinned) || new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    );
+    setActiveMenuId(null);
+
+    await fetch(`/api/history/${chat._id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ isPinned: newPinnedStatus })
+    });
+  };
+
+  const handleDelete = async (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if(!confirm("Are you sure you want to delete this chat?")) return;
+
+    setHistory(prev => prev.filter(c => c._id !== id));
+    if (currentChatId === id) router.push("/"); 
+
+    await fetch(`/api/history/${id}`, { method: "DELETE" });
+  };
+
+  const startRename = (e: React.MouseEvent, chat: ChatSessionItem) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setEditingChatId(chat._id);
+    setEditTitle(chat.title);
+    setActiveMenuId(null);
+  };
+
+  const saveRename = async (e: React.FormEvent, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setHistory(prev => prev.map(c => c._id === id ? { ...c, title: editTitle } : c));
+    setEditingChatId(null);
+    
+    await fetch(`/api/history/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ title: editTitle })
+    });
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    });
+  };
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* ------------------------------------------------------------
-        LEFT SIDEBAR: Statute Database & User Settings
-        ------------------------------------------------------------
-      */}
-      <div className={`${leftSidebarExpanded ? 'w-80' : 'w-16'} bg-white border-r border-gray-200 flex flex-col transition-all duration-300`}>
+    <div className="flex h-screen bg-gray-50 overflow-hidden font-sans">
+      
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside 
+        className={`
+          fixed md:relative z-50 w-80 h-full bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 ease-in-out flex-shrink-0
+          ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        `}
+      >
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
-          <button 
-            onClick={() => setLeftSidebarExpanded(!leftSidebarExpanded)}
-            className="flex items-center gap-2 focus:outline-none"
-          >
-            <Book className="w-5 h-5 text-blue-600" />
-            {leftSidebarExpanded && <span className="font-semibold text-gray-900">Statute Database</span>}
-          </button>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <MessageSquare className="w-5 h-5 text-blue-600" />
+              <span className="font-semibold text-gray-900">Chat History</span>
+            </div>
+            <div className="flex gap-1">
+              <Link 
+                href="/" 
+                onClick={handleNewChatClick} // Updated handler
+                className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100"
+                title="New Chat"
+              >
+                <Plus className="w-4 h-4" />
+              </Link>
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="md:hidden p-1.5 text-gray-500"
+              >
+                <X size={18} />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {leftSidebarExpanded && (
-          <>
-            {/* Search */}
-            <div className="p-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search statutes..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-            </div>
+        {/* New Chat Button */}
+        <div className="p-4 border-b border-gray-200">
+          <Link 
+            href="/"
+            onClick={handleNewChatClick} // Updated handler
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+          >
+            <RefreshCw className="w-4 h-4" />
+            New Chat
+          </Link>
+        </div>
 
-            {/* Quick Categories */}
-            <div className="px-4 pb-4">
-              <div className="flex flex-wrap gap-2">
-                {lawCategories.map((category) => (
-                  <button
-                    key={category}
-                    className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors"
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* SCROLLABLE CONTENT AREA 
-              'flex-1' ensures this takes up all available space, pushing the Auth component to the bottom
-            */}
-            <div className="flex-1 overflow-y-auto">
-              <div className="px-4">
-                <button
-                  onClick={() => setRecentExpanded(!recentExpanded)}
-                  className="flex items-center gap-2 w-full py-2 text-sm font-medium text-gray-900 hover:text-blue-600"
-                >
-                  {recentExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                  Recent
-                </button>
-                {recentExpanded && (
-                  <div className="ml-6 space-y-2">
-                    {recentStatutes.map((statute) => (
-                      <button
-                        key={statute}
-                        className="block w-full text-left py-1 px-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded"
+        {/* List */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-4 pb-24"> 
+            <h3 className="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <Calendar className="w-4 h-4" />
+              Recent Conversations
+            </h3>
+            
+            <div className="space-y-2">
+              {isHistoryLoading ? (
+                <div className="flex justify-center py-8">
+                  <Loader2 className="w-6 h-6 text-blue-600 animate-spin" />
+                </div>
+              ) : history.length === 0 ? (
+                <div className="text-center text-gray-400 text-sm py-8 italic">
+                  No history yet.<br/>Start a new chat!
+                </div>
+              ) : (
+                history.map((chat) => (
+                  <div key={chat._id} className="relative">
+                    {editingChatId === chat._id ? (
+                      // --- Editing Mode ---
+                      <form 
+                        onSubmit={(e) => saveRename(e, chat._id)} 
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-2 border border-blue-500 rounded-lg bg-blue-50"
                       >
-                        {statute}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Categories Section */}
-              <div className="px-4 mt-4">
-                <button
-                  onClick={() => setCategoriesExpanded(!categoriesExpanded)}
-                  className="flex items-center gap-2 w-full py-2 text-sm font-medium text-gray-900 hover:text-blue-600"
-                >
-                  {categoriesExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-                  <Filter className="w-4 h-4" />
-                  Categories
-                </button>
-                {categoriesExpanded && (
-                  <div className="ml-6 space-y-2">
-                    {lawCategories.map((category) => (
-                      <button
-                        key={category}
-                        className="block w-full text-left py-1 px-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded"
+                        <input 
+                          autoFocus
+                          value={editTitle}
+                          onChange={(e) => setEditTitle(e.target.value)}
+                          onBlur={() => setEditingChatId(null)}
+                          className="w-full text-sm border-none bg-transparent focus:ring-0 p-0 text-gray-900"
+                        />
+                      </form>
+                    ) : (
+                      // --- Normal Mode (Flexbox Layout) ---
+                      <div 
+                        className={`
+                          flex items-center justify-between group border rounded-lg transition-all
+                          ${
+                            currentChatId === chat._id
+                              ? "border-blue-500 bg-blue-50 shadow-sm"
+                              : "border-gray-200 hover:border-blue-300 hover:bg-blue-50"
+                          }
+                        `}
                       >
-                        {category}
-                      </button>
-                    ))}
+                        {/* 1. Left Side: Clickable Area for Navigation */}
+                        <div 
+                          onClick={() => handleChatClick(chat._id)}
+                          className="flex-1 p-3 min-w-0 cursor-pointer"
+                        >
+                          <h4 className={`text-sm font-medium line-clamp-1 ${
+                            currentChatId === chat._id ? "text-blue-800" : "text-gray-900"
+                          }`}>
+                            {chat.isPinned && <Pin size={12} className="inline mr-1.5 fill-current text-blue-600 rotate-45" />}
+                            {chat.title}
+                          </h4>
+                          <div className="text-xs text-gray-500 mt-1">
+                            {formatDate(chat.updatedAt)}
+                          </div>
+                        </div>
+
+                        {/* 2. Right Side: Menu Button (Completely Separate) */}
+                        <div className="pr-2 relative">
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setActiveMenuId(activeMenuId === chat._id ? null : chat._id);
+                            }}
+                            className={`
+                              chat-menu-trigger p-1.5 rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-200/80 
+                              transition-opacity
+                              ${activeMenuId === chat._id ? 'opacity-100 bg-gray-200' : 'opacity-0 group-hover:opacity-100'}
+                            `}
+                          >
+                            <MoreHorizontal size={16} />
+                          </button>
+
+                          {/* 3. The Dropdown Menu */}
+                          {activeMenuId === chat._id && (
+                            <div 
+                              className="absolute right-0 top-8 w-36 bg-white border border-gray-200 shadow-xl rounded-md z-50 overflow-hidden ring-1 ring-black ring-opacity-5"
+                              onClick={(e) => e.stopPropagation()} 
+                            >
+                              <button 
+                                onClick={(e) => handlePin(e, chat)} 
+                                className="w-full text-left px-4 py-2.5 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                              >
+                                <Pin size={12} /> {chat.isPinned ? "Unpin Chat" : "Pin Chat"}
+                              </button>
+                              <button 
+                                onClick={(e) => startRename(e, chat)} 
+                                className="w-full text-left px-4 py-2.5 text-xs text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                              >
+                                <Edit2 size={12} /> Rename
+                              </button>
+                              <button 
+                                onClick={(e) => handleDelete(e, chat._id)} 
+                                className="w-full text-left px-4 py-2.5 text-xs text-red-600 hover:bg-red-50 flex items-center gap-2 border-t border-gray-100"
+                              >
+                                <Trash2 size={12} /> Delete
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
+                ))
+              )}
             </div>
+          </div>
+        </div>
 
-            {/* AUTHENTICATION / USER PROFILE SECTION 
-               Placed here to stick to the bottom of the sidebar
-            */}
-            <div className="p-4 border-t border-gray-200">
-               <AuthSidebarItem />
-            </div>
-          </>
-        )}
-      </div>
+        <div className="p-4 border-t border-gray-200 bg-gray-50 mt-auto">
+           <AuthSidebarItem />
+        </div>
+      </aside>
 
-      {/* ------------------------------------------------------------
-        MAIN CONTENT AREA: Chat Interface
-        ------------------------------------------------------------
-      */}
-      <div className="flex-1 flex flex-col">
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative w-full">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-4 flex-shrink-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Scale className="w-6 h-6 text-blue-600" />
-              <div>
-                <h1 className="text-xl font-semibold text-gray-900">Legal AI Assistant</h1>
-                <p className="text-sm text-gray-600">Ask questions about statutes, regulations, and legal precedents</p>
+              <button 
+                onClick={() => setIsMobileMenuOpen(true)} 
+                className="md:hidden text-gray-600 p-1"
+              >
+                <Menu size={24} />
+              </button>
+              
+              <div className="flex items-center gap-2">
+                <Scale className="w-6 h-6 text-blue-600 hidden md:block" />
+                <div>
+                  <h1 className="text-lg md:text-xl font-semibold text-gray-900">Legal AI Assistant</h1>
+                  <p className="text-xs md:text-sm text-gray-600 hidden md:block">Ask questions about statutes, regulations, and legal precedents</p>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                 Live Session
               </span>
-              <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100">
+              <button 
+                onClick={() => router.refresh()}
+                className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100"
+                title="Refresh"
+              >
                 <RefreshCw className="w-4 h-4" />
               </button>
             </div>
@@ -249,52 +421,44 @@ export default function Layout({
         </div>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto bg-gray-50">
-          <div className="max-w-4xl mx-auto p-6">
+        <div className="flex-1 overflow-y-auto bg-gray-50 scroll-smooth pb-32">
+          <div className="max-w-4xl mx-auto p-4 md:p-6">
             {messages && messages.length > 0 ? (
               messages.map((msg) => (
                 <div key={msg.id} className="mb-6">
                   {msg.type === 'assistant' ? (
                     <div className="flex gap-4">
-                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 hidden md:flex">
                         <Scale className="w-4 h-4 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-200">
-                          <ReactMarkdown
-                          remarkPlugins={[remarkGfm]}
-                          className="prose prose-sm max-w-none text-gray-900 leading-relaxed"
-                          components={{
-                            a: ({ node, ...props }) => (
-                              <a
-                                {...props}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 underline hover:text-blue-800"
-                              />
-                            ),
-                          }}
-                        >
-                          {msg.content}
-                        </ReactMarkdown>
+                      <div className="flex-1 min-w-0">
+                        <div className="bg-white rounded-2xl rounded-tl-sm p-5 shadow-sm border border-gray-200">
+                          
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-sm max-w-none text-gray-900 leading-relaxed break-words" components={{
+                          a: ({ node, ...props }: any) => <a {...props} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline hover:text-blue-800 font-medium" />,
+                          p: ({ node, ...props }: any) => <p {...props} className="mb-3 last:mb-0" />,
+                          ul: ({ node, ...props }: any) => <ul {...props} className="list-disc pl-5 mb-3 space-y-1" />,
+                          ol: ({ node, ordered, ...props }: any) => <ol {...props} className="list-decimal pl-5 mb-3 space-y-1" />,
+                        }}>{msg.content}</ReactMarkdown>
+
                           {msg.confidence && (
-                            <div className="mt-3 text-xs text-gray-500">
-                              Confidence: {msg.confidence}%
+                            <div className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-500 font-medium">
+                              Confidence Score: {msg.confidence}%
                             </div>
                           )}
                         </div>
-                        <div className="flex items-center gap-2 mt-2">
-                          <span className="text-xs text-gray-500">
+                        <div className="flex items-center gap-2 mt-2 ml-1">
+                          <span className="text-xs text-gray-400">
                             <MessageTimestamp timestamp={msg.timestamp} />
                           </span>
                           <div className="flex items-center gap-1">
-                            <button className="p-1 text-gray-400 hover:text-gray-600 rounded">
+                            <button className="p-1 text-gray-400 hover:text-gray-600 rounded hover:bg-gray-100 transition-colors" title="Copy">
                               <Copy className="w-3 h-3" />
                             </button>
-                            <button className="p-1 text-gray-400 hover:text-green-600 rounded">
+                            <button className="p-1 text-gray-400 hover:text-green-600 rounded hover:bg-green-50 transition-colors" title="Helpful">
                               <ThumbsUp className="w-3 h-3" />
                             </button>
-                            <button className="p-1 text-gray-400 hover:text-red-600 rounded">
+                            <button className="p-1 text-gray-400 hover:text-red-600 rounded hover:bg-red-50 transition-colors" title="Not Helpful">
                               <ThumbsDown className="w-3 h-3" />
                             </button>
                           </div>
@@ -303,15 +467,15 @@ export default function Layout({
                     </div>
                   ) : (
                     <div className="flex gap-4 justify-end">
-                      <div className="flex-1 max-w-2xl">
-                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm p-4">
-                          <div className="leading-relaxed">{msg.content}</div>
+                      <div className="flex-1 max-w-2xl flex flex-col items-end">
+                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm p-4 shadow-sm">
+                          <div className="leading-relaxed whitespace-pre-wrap">{msg.content}</div>
                         </div>
-                        <div className="text-right mt-2">
-                          <span className="text-xs text-gray-500">{msg.timestamp}</span>
+                        <div className="text-right mt-2 mr-1">
+                          <span className="text-xs text-gray-400">{msg.timestamp}</span>
                         </div>
                       </div>
-                      <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 hidden md:flex">
                         <MessageSquare className="w-4 h-4 text-white" />
                       </div>
                     </div>
@@ -319,115 +483,55 @@ export default function Layout({
                 </div>
               ))
             ) : (
-              <div className="text-center py-12">
-                <Scale className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Welcome to Legal AI Assistant</h3>
-                <p className="text-gray-600 mb-6">I can help you with questions about statutes, regulations, and legal precedents. What would you like to know?</p>
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                  Confidence: 95%
+              <div className="flex flex-col items-center justify-center py-20 opacity-0 animate-fadeIn" style={{ animationFillMode: 'forwards' }}>
+                <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6">
+                  <Scale className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Welcome to Legal AI Assistant</h3>
+                <p className="text-gray-500 mb-8 text-center max-w-md">
+                  I can help you with questions about statutes, regulations, and legal precedents. Start by asking a question below.
+                </p>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-100">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  System Online: 95% Confidence
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Input Area */}
-        <div className="bg-white border-t border-gray-200 p-4">
+        {/* Input Area - Fixed at Bottom */}
+        <div className="bg-white border-t border-gray-200 p-4 flex-shrink-0 z-10">
           <div className="max-w-4xl mx-auto">
-            <div className="flex gap-3">
-              <div className="flex-1 relative">
-                <textarea
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={onKeyPress}
-                  placeholder="Ask a legal question... (e.g., 'What are the requirements for insider trading disclosure?')"
-                  className="w-full p-3 pr-12 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black placeholder-gray-500"
-                  rows={2}
-                />
-                <button
-                  onClick={onSendMessage}
-                  disabled={isLoading || !inputValue || !inputValue.trim()}
-                  className="absolute right-3 bottom-3 p-1.5 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
+            <div className="flex gap-3 relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={onKeyPress}
+                placeholder="Ask a legal question... (e.g., 'What are the requirements for insider trading disclosure?')"
+                className="w-full p-4 pr-14 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-400 shadow-sm transition-shadow min-h-[60px] max-h-[200px]"
+                rows={1}
+                disabled={isLoading}
+              />
+              <button
+                onClick={onSendMessage}
+                disabled={isLoading || !inputValue || !inputValue.trim()}
+                className="absolute right-3 bottom-3 p-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all shadow-sm active:scale-95"
+              >
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <Send className="w-5 h-5" />
+                )}
+              </button>
             </div>
-            <div className="text-xs text-gray-500 mt-2 text-center">
-              This AI assistant provides legal information for research purposes only and should not be considered legal advice.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ------------------------------------------------------------
-        RIGHT SIDEBAR: Chat History
-        ------------------------------------------------------------
-      */}
-      <div className="w-80 bg-white border-l border-gray-200 flex flex-col">
-        {/* Header */}
-        <div className="p-4 border-b border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-blue-600" />
-              <span className="font-semibold text-gray-900">Chat History</span>
-            </div>
-            <button className="p-1.5 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100">
-              <Plus className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Search */}
-        <div className="p-4 border-b border-gray-200">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search conversations..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-        </div>
-
-        {/* New Chat Button */}
-        <div className="p-4 border-b border-gray-200">
-          <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-            <RefreshCw className="w-4 h-4" />
-            New Chat
-          </button>
-        </div>
-
-        {/* Recent Conversations */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="p-4">
-            <h3 className="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
-              <RefreshCw className="w-4 h-4" />
-              Recent Conversations
-            </h3>
-            <div className="space-y-3">
-              {chatHistory.map((chat) => (
-                <div
-                  key={chat.id}
-                  className="p-3 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 cursor-pointer transition-colors"
-                >
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="text-sm font-medium text-gray-900 line-clamp-2">{chat.title}</h4>
-                  </div>
-                  <p className="text-xs text-gray-600 mb-2 line-clamp-2">{chat.preview}</p>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-500">{chat.date}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded-full">{chat.messageCount}</span>
-                      <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{chat.category}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="text-xs text-gray-400 mt-3 text-center">
+              This AI assistant provides legal information for research purposes only and should not be considered professional legal advice.
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 }

@@ -116,7 +116,7 @@ Return only a number between 0.0 and 1.0.`;
 
   try {
     const evaluation = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.1,
     });
@@ -143,7 +143,7 @@ Return only a number between 0.0 and 1.0.`;
 
   try {
     const evaluation = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.1,
     });

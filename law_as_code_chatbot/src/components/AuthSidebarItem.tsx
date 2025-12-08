@@ -1,5 +1,5 @@
 "use client";
-
+// law_as_code_chatbot/src/components/AuthSidebarItem.tsx
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { LogOut, LogIn, User } from "lucide-react"; 

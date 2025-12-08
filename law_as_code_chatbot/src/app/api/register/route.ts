@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/app/api/register/route.ts
 import { NextResponse } from 'next/server';
 import connectDB from '@/lib/databse_user/db';
 import { User } from '@/lib/databse_user/user';

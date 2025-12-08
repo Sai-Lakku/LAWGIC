@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/app/api/auth/[...nextauth]/route.ts
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectDB from "@/lib/databse_user/db";

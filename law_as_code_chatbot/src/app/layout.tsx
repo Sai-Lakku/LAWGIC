@@ -1,3 +1,4 @@
+// law_as_code_chatbot/src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers"; 

@@ -1,12 +1,3 @@
-// // law_as_code_chatbot/src/app/api/search/route.ts
-// import { NextResponse } from "next/server";
-
-// export async function GET() {
-//   console.log("hit /api/search");  // for testing
-//   return NextResponse.json({ msg: "ok" });
-// }
-
-
 // law_as_code_chatbot/src/app/api/search/route.ts
 import { NextResponse } from "next/server";
 import { MongoClient } from "mongodb";

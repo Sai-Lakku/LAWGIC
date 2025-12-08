@@ -34,36 +34,37 @@
 import { InputStateAnnotation } from "../state";
 import connectDB from "../../databse_user/db";
 import { OpenAIEmbeddings, ChatOpenAI } from "@langchain/openai";
-// Note: We removed SystemMessage and HumanMessage imports as we are using plain objects now
 
 // Define the type for the returned references
 type RefItem = { title: string; url?: string | null; cite?: string | null };
 
 /**
- * RRF (Reciprocal Rank Fusion) Algorithm
- * Purpose: Merges two lists of results. If a document appears high in both lists,
- * its score is significantly boosted.
+ * Weighted RRF (Reciprocal Rank Fusion) Algorithm
+ * Purpose: Merges two lists of results with custom weighting.
+ * Strategy: We give higher weight (weightB) to Keyword Search because exact term matches
+ * (e.g., "541.07") are usually more accurate than semantic vector matches in law.
  */
-function performRRF(listA: any[], listB: any[], k = 60) {
+function performRRF(listA: any[], listB: any[], k = 60, weightA = 1.0, weightB = 3.0) {
   const fusedScores = new Map<string, any>();
 
-  // Process List A (Vector Search Results)
+  // Process List A: Vector Search (Semantic) - Weight 1.0
   listA.forEach((doc, rank) => {
     const id = doc._id.toString();
     if (!fusedScores.has(id)) {
       fusedScores.set(id, { doc, score: 0 });
     }
-    // RRF Formula: 1 / (k + rank)
-    fusedScores.get(id).score += 1 / (k + rank + 1);
+    // RRF Formula with Weighting
+    fusedScores.get(id).score += (1 / (k + rank + 1)) * weightA;
   });
 
-  // Process List B (Keyword Search Results)
+  // Process List B: Keyword Search (Exact Match) - Weight 3.0 (Boosting this!)
   listB.forEach((doc, rank) => {
     const id = doc._id.toString();
     if (!fusedScores.has(id)) {
       fusedScores.set(id, { doc, score: 0 });
     }
-    fusedScores.get(id).score += 1 / (k + rank + 1);
+    // RRF Formula with Weighting
+    fusedScores.get(id).score += (1 / (k + rank + 1)) * weightB;
   });
 
   // Convert Map back to array and sort by score descending
@@ -78,13 +79,13 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
   console.log(`🚀 Starting Hybrid Search for: "${state.question}"`);
 
   // --- Step 0: Query Expansion (The "Translator") ---
-  // We use a fast/cheap LLM to convert the user's question into better search keywords.
+  // Uses a cheap model to convert natural language into better search terms.
   const llm = new ChatOpenAI({
     modelName: "gpt-4o-mini",
     temperature: 0,
   });
 
-  // FIX: Using plain objects instead of SystemMessage classes to avoid TypeScript errors
+  // Using plain objects for messages to avoid TypeScript version conflicts
   const expansionResponse = await llm.invoke([
     {
       role: "system",
@@ -111,24 +112,21 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
   const db = mongoose.connection.db;
   if (!db) throw new Error("Database connection failed");
   
-  // Confirmed collection name based on your previous screenshots
   const collection = db.collection("upgrade_laws"); 
 
-  // 2. Generate Embedding for the ORIGINAL question
-  // We use the original question for Vector Search to capture the user's original semantic intent.
+  // 2. Generate Embedding for Vector Search (Use Original Question)
   const embeddings = new OpenAIEmbeddings({
     modelName: "text-embedding-3-small",
   });
   const queryVector = await embeddings.embedQuery(state.question);
 
-  // 3. Execute Parallel Searches: Vector (Semantic) + Keyword (Exact Match)
+  // 3. Execute Parallel Searches: Vector + Keyword (with Boosting)
   const [vectorResults, keywordResults] = await Promise.all([
     // A. Vector Search (Semantic Understanding)
-    // Uses the original user question
     collection.aggregate([
       {
         "$vectorSearch": {
-          "index": "test_retrieval_vector_index", // Your Vector Index Name
+          "index": "test_retrieval_vector_index", // Your Vector Index
           "path": "embedding",
           "queryVector": queryVector,
           "numCandidates": 100,
@@ -147,15 +145,28 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
       }
     ]).toArray(),
 
-    // B. Keyword Search (Precision Match)
-    // Uses the EXPANDED/REFINED query to catch specific legal terms
+    // B. Keyword Search (Precision Match with Title Boosting)
+    // Uses the REFINED query
     collection.aggregate([
       {
         "$search": {
-          "index": "test_retrieval_atlas_search", // Your Atlas Search Index Name
-          "text": {
-            "query": refinedQuery, // Using the LLM-optimized keywords here
-            "path": ["content", "title", "id"] // Search in these fields
+          "index": "test_retrieval_atlas_search", // Your Text Index
+          "compound": {
+            "should": [
+              {
+                "text": {
+                  "query": refinedQuery,
+                  "path": "title", // 🎯 Search in Title
+                  "score": { "boost": { "value": 5 } } // 🚀 Boost score by 5x if found in title
+                }
+              },
+              {
+                "text": {
+                  "query": refinedQuery,
+                  "path": ["content", "id"] // Normal search in content/id
+                }
+              }
+            ]
           }
         }
       },
@@ -175,28 +186,38 @@ export async function retrieve(state: typeof InputStateAnnotation.State) {
 
   console.log(`📊 Stats: Vector found ${vectorResults.length}, Keyword found ${keywordResults.length}`);
 
-  // 4. Perform RRF Fusion
-  // Merge the two lists, prioritizing documents that appear in both.
-  const fusedResults = performRRF(vectorResults, keywordResults);
+  // 4. Perform Weighted RRF Fusion
+  const fusedResults = performRRF(vectorResults, keywordResults, 60, 1.0, 3.0);
 
-  // 5. Slice Top Results for Context
-  // Increased to 25 to provide more context window to the LLM
-  const finalDocs = fusedResults.slice(0, 25);
+  // 5. Slice Results (The Split Strategy)
+  // Strategy: Feed the AI more context to be smart, but show the user fewer links to be clean.
+  
+  // AI Context Window: Top 15 documents (Accuracy priority)
+  const contextDocs = fusedResults.slice(0, 15); 
+
+  // User UI References: Top 3 documents (UX priority)
+  const referenceDocs = fusedResults.slice(0, 3);
 
   // 6. Format Output
-  const context = finalDocs.map((d: any) => d.content ?? "").join("\n\n");
+  // Create structured context for the AI
+  const context = contextDocs.map((d: any) => {
+    const title = d.title ?? "Unknown Title";
+    const id = d.id ?? "Unknown ID";
+    const content = d.content ?? "";
+    return `--- DOCUMENT START ---\nID: ${id}\nTITLE: ${title}\nCONTENT:\n${content}\n--- DOCUMENT END ---`;
+  }).join("\n\n");
 
-  const references: RefItem[] = finalDocs.map((d: any) => ({
+  // Create clean references list for the User (using only the top 3)
+  const references: RefItem[] = referenceDocs.map((d: any) => ({
     title: d.title ?? "Unknown statute",
     url: d.url ?? null,
     cite: d.id ?? null,
   }));
 
-  console.log(`✅ Final Hybrid Reranked Result Count: ${finalDocs.length}`);
+  console.log(`✅ AI Context Size: ${contextDocs.length} docs | User References Size: ${referenceDocs.length} docs`);
   
-  // Debug: Log the top result to verify relevance
-  if (finalDocs.length > 0) {
-    console.log(`🥇 Top Result: ${finalDocs[0].id} - ${finalDocs[0].title}`);
+  if (contextDocs.length > 0) {
+    console.log(`🥇 Top Result: ${contextDocs[0].id} - ${contextDocs[0].title}`);
   }
 
   return { context, references };
