@@ -11,8 +11,9 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useParams, useRouter } from "next/navigation";
-
 import { AuthSidebarItem } from "@/components/AuthSidebarItem";
+import LoginRequiredModal from "./login/loginRequiredModal";
+
 
 // --- Components ---
 
@@ -63,6 +64,7 @@ export default function Layout({
   isLoading,
 }: LayoutProps) {
   const { data: session } = useSession();
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const params = useParams();
   const currentChatId = params?.id as string;
   const router = useRouter();
@@ -129,7 +131,7 @@ export default function Layout({
   const handleChatClick = (chatId: string) => {
     if (editingChatId === chatId) return; // Don't navigate if editing
     
-    // 🔥 Trigger analysis for the OLD chat before leaving
+    //  Trigger analysis for the OLD chat before leaving
     if (currentChatId && currentChatId !== chatId) {
       triggerAnalysis(currentChatId);
     }
@@ -143,7 +145,7 @@ export default function Layout({
     e.preventDefault();
     setIsMobileMenuOpen(false);
     
-    // 🔥 Trigger analysis for the OLD chat before leaving
+    //  Trigger analysis for the OLD chat before leaving
     if (currentChatId) {
       triggerAnalysis(currentChatId);
     }
@@ -206,6 +208,7 @@ export default function Layout({
       day: "numeric",
     });
   };
+
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden font-sans">
@@ -506,15 +509,32 @@ export default function Layout({
             <div className="flex gap-3 relative">
               <textarea
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={onKeyPress}
+                onChange={(e) => {
+                  if (!session?.user) {
+                    setShowLoginModal(true);
+                    return;
+                  }
+                  setInputValue(e.target.value);
+                }}
+                onFocus={() => {
+                  if (!session?.user) setShowLoginModal(true);
+                }}
+                onKeyDown={(e) => {if (!session?.user) {e.preventDefault();setShowLoginModal(true);return;}
+                  onKeyPress(e);
+                }}
                 placeholder="Ask a legal question... (e.g., 'What are the requirements for insider trading disclosure?')"
                 className="w-full p-4 pr-14 border border-gray-300 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900 placeholder-gray-400 shadow-sm transition-shadow min-h-[60px] max-h-[200px]"
                 rows={1}
                 disabled={isLoading}
               />
               <button
-                onClick={onSendMessage}
+                onClick={() =>{
+                    if (!session?.user) {
+                      setShowLoginModal(true);
+                      return;
+                    }
+                    onSendMessage();
+                  }}
                 disabled={isLoading || !inputValue || !inputValue.trim()}
                 className="absolute right-3 bottom-3 p-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-all shadow-sm active:scale-95"
               >
@@ -531,7 +551,10 @@ export default function Layout({
           </div>
         </div>
       </div>
-
+      <LoginRequiredModal
+        open={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+      />
     </div>
   );
 }
